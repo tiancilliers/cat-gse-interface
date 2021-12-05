@@ -1,0 +1,132 @@
+{
+  "config_name": "GSE CONFIG TEST",
+  "logging_history_points": 20,
+  "logging_interval": 1000,
+  "diagram_path": "D:\\Projects\\CAT\\User Interfaces Source Code\\Interface_V2\\Interface_V2\\diagram.png",
+  "pressure_min": 0,
+  "pressure_max": 50,
+  "temperature_min": 0,
+  "temperature_max": 1000,
+  "oxidizer_state_machine": {
+    "states": [
+      {
+        "state_name": "OX_SAFE",
+        "lockout": 0,
+        "transitions": [
+          {
+            "trigger_type": "button",
+            "button_name": "OX_FILLDRAIN",
+            "target_state": "OX_FILLDRAIN",
+            "transition": [
+              {
+                "delay_ms_before": 0,
+                "servo_name": "OX_FILLDRAIN",
+                "servo_state": 1
+              }
+            ]
+          },
+          {
+            "trigger_type": "button",
+            "button_name": "OX_PRESS",
+            "target_state": "OX_PRESS",
+            "transition": [
+              {
+                "delay_ms_before": 0,
+                "servo_name": "OX_VENTPRESS",
+                "servo_state": 1
+              }
+            ]
+          }
+        ],
+        "abort": {
+          "trigger_type": "none",
+          "target_state": "ABORT",
+          "transition": []
+        }
+      }
+    ]
+  },
+  "valves": [
+    {
+      "valve_name": "HE_BLEED_VALVE",
+      "valve_state0_us": 500,
+      "valve_state1_us": 2000
+    }
+  ]
+  "pressure_sensors": [
+    {
+      "diagram_position_x": 0.10,
+      "diagram_position_y": 0.08,
+      "sensor_type": 32,
+      "sensor_name": "PRESS_OX_CHAMB"
+    },
+    {
+      "diagram_position_x": 0.60,
+      "diagram_position_y": 0.08,
+      "sensor_type": 32,
+      "sensor_name": "PRESS_FUEL_CHAMB"
+    },
+    {
+      "diagram_position_x": 0.21,
+      "diagram_position_y": 0.30,
+      "sensor_type": 32,
+      "sensor_name": "PRESS_N2_TANK"
+    },
+    {
+      "diagram_position_x": -0.18,
+      "diagram_position_y": 0.565,
+      "sensor_type": 32,
+      "sensor_name": "PRESS_OX_TANK"
+    },
+    {
+      "diagram_position_x": 0.88,
+      "diagram_position_y": 0.565,
+      "sensor_type": 32,
+      "sensor_name": "PRESS_FUEL_TANK"
+    },
+    {
+      "diagram_position_x": 0.26,
+      "diagram_position_y": 0.85,
+      "sensor_type": 32,
+      "sensor_name": "PRESS_HE_TANK"
+    }
+  ],
+  "temperature_sensors": [
+    {
+      "diagram_position_x": 0,
+      "diagram_position_y": 0,
+      "sensor_type": 16,
+      "sensor_name": "TEMP_0"
+    },
+    {
+      "diagram_position_x": 0,
+      "diagram_position_y": 0,
+      "sensor_type": 16,
+      "sensor_name": "TEMP_1"
+    },
+    {
+      "diagram_position_x": 0,
+      "diagram_position_y": 0,
+      "sensor_type": 16,
+      "sensor_name": "TEMP_2"
+    },
+    {
+      "diagram_position_x": 0,
+      "diagram_position_y": 0,
+      "sensor_type": 16,
+      "sensor_name": "TEMP_3"
+    },
+    {
+      "diagram_position_x": 0,
+      "diagram_position_y": 0,
+      "sensor_type": 16,
+      "sensor_name": "TEMP_4"
+    },
+    {
+      "diagram_position_x": 0,
+      "diagram_position_y": 0,
+      "sensor_type": 16,
+      "sensor_name": "TEMP_5"
+    }
+  ]
+}
