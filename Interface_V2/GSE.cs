@@ -38,7 +38,7 @@ namespace Interface_V2
         }
 
         [StructLayout(LayoutKind.Sequential, Size = 6)]
-        public struct LinearTransformData
+        public struct SensorTypeData
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6)]
             public byte[] types;
@@ -83,11 +83,11 @@ namespace Interface_V2
             return ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_GET_VALVES }));
         }
 
-        public void SetTransform(byte type, LinearTransformData data)
+        public void SetSensorType(byte type, SensorTypeData data)
         {
             byte[] command = new byte[97];
             command[0] = type;
-            StructureToByteArray<LinearTransformData>(data).CopyTo(command, 1);
+            StructureToByteArray<SensorTypeData>(data).CopyTo(command, 1);
             slip.DoTransaction(command);
         }
 
@@ -129,5 +129,10 @@ namespace Interface_V2
             Marshal.FreeHGlobal(handle);
             return arr;
         }
+
+        /*public byte FindServoID(string servoName)
+        {
+            for (int i = 0; i <ValidationConst)
+        }*/
     }
 }

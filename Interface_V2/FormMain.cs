@@ -19,12 +19,15 @@ namespace Interface_V2
         Config config;
         FormManual manualEntry;
         private bool loggingEnabled = false;
+        string configPath = "GSE_Config.json";
 
         public FormMain()
         {
             InitializeComponent();
             gse = new GSE(port1, tbxLogTX, tbxLogRX);
             manualEntry = new FormManual(gse);
+            config = new Config(configPath);
+            applyVisualConfig();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -42,6 +45,7 @@ namespace Interface_V2
                 tbxIdent.Text = gse.GetIdent();
                 tbxVersion.Text = gse.GetVersion();
                 timer1.Start();
+                applyGSEConfig();
                 btnPortOpen.Enabled = false;
                 btnPortClose.Enabled = true;
                 enableInterface(true);
@@ -70,8 +74,11 @@ namespace Interface_V2
             {
                 GSE.SensorData rawTemps = gse.GetTemperatureData();
                 GSE.SensorData rawPress = gse.GetPressureData();
+                GSE.ServoData rawValves = gse.GetValveStates();
                 systemDiagram1.temperatureData = rawTemps;
                 systemDiagram1.pressureData = rawPress;
+                systemDiagram1.valveData = rawValves;
+                systemDiagram1.Refresh();
 
                 if (config != null && loggingEnabled)
                 {
@@ -83,7 +90,7 @@ namespace Interface_V2
                         chartTemp.Series[i].Points.AddY(rawTemps.sensors[i]);
 
                         chartPress.Series[i].Points.RemoveAt(0);
-                        chartPress.Series[i].Points.AddY(rawPress.sensors[i]);
+                        chartPress.Series[i].Points.AddY(rawPress.sensors[i]/1000);
                     }
 
                     chartTemp.Update();
@@ -121,12 +128,36 @@ namespace Interface_V2
         {
             if (dialogConfig.ShowDialog() == DialogResult.OK)
             {
-                config = new Config(dialogConfig.FileName);
-                refreshConfig();
+                config = new Config(configPath);
+                applyVisualConfig();
+                applyGSEConfig();
             }
         }
 
-        private void refreshConfig()
+        private void applyGSEConfig()
+        {
+            GSE.SensorTypeData pressTypes = new GSE.SensorTypeData();
+            GSE.SensorTypeData tempTypes = new GSE.SensorTypeData();
+            pressTypes.types = new byte[6];
+            tempTypes.types = new byte[6];
+            for (int i = 0; i < 6; i++)
+            {
+                pressTypes.types[i] = config.baseSettings.pressure_sensors[i].sensor_type;
+                tempTypes.types[i] = config.baseSettings.temperature_sensors[i].sensor_type;
+            }
+            gse.SetSensorType(GSE.CMD_TEMP_TYPES, tempTypes);
+            gse.SetSensorType(GSE.CMD_PRESS_TYPES, pressTypes);
+
+            GSE.ServoData state0 = new GSE.ServoData();
+            state0.servos = new ushort[16];
+            for (int i = 0; i < config.baseSettings.valves.Count; i++)
+            {
+                state0.servos[i] = (ushort)config.baseSettings.valves[i].valve_state0_us;
+            }
+            gse.SetValveStates(state0);
+        }
+
+        private void applyVisualConfig()
         {
             tbxConfigIdent.Text = config.baseSettings.config_name;
             timer1.Interval = config.baseSettings.logging_interval;
@@ -157,18 +188,6 @@ namespace Interface_V2
             chartTemp.ChartAreas[0].AxisY.Minimum = config.baseSettings.temperature_min;
             chartTemp.ChartAreas[0].AxisY.Maximum = config.baseSettings.temperature_max;
             systemDiagram1.SetConfig(config);
-
-            GSE.LinearTransformData pressTransform = new GSE.LinearTransformData();
-            GSE.LinearTransformData tempTransform = new GSE.LinearTransformData();
-            pressTransform.types = new byte[6];
-            tempTransform.types = new byte[6];
-            for (int i = 0; i < 6; i++)
-            {
-                pressTransform.types[i] = config.baseSettings.pressure_sensors[i].sensor_type;
-                tempTransform.types[i] = config.baseSettings.temperature_sensors[i].sensor_type;
-            }
-            gse.SetTransform(GSE.CMD_TEMP_TYPES, tempTransform);
-            gse.SetTransform(GSE.CMD_PRESS_TYPES, pressTransform);
         }
 
         private void FormMain_Resize(object sender, EventArgs e)
@@ -215,6 +234,25 @@ namespace Interface_V2
         {
             manualEntry.UpdateServoData();
             manualEntry.ShowDialog();
+        }
+
+        private void tmrPurge_Tick(object sender, EventArgs e)
+        {
+            tmrPurge.Enabled = false;
+            btnPurgeFuel.Enabled = true;
+            btnPurgeOx.Enabled = true;
+            //gse.SetValveState();
+        }
+
+        private void cbxHeliumFlow_CheckedChanged(object sender, EventArgs e)
+        {
+            GSE.ServoData state0 = new GSE.ServoData();
+            state0.servos = new ushort[16];
+            for (int i = 0; i < config.baseSettings.valves.Count; i++)
+            {
+                state0.servos[i] = cbxHeliumFlow.Checked ? (ushort)config.baseSettings.valves[i].valve_state1_us : (ushort)config.baseSettings.valves[i].valve_state0_us;
+            }
+            gse.SetValveStates(state0);
         }
     }
 }

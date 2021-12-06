@@ -63,6 +63,7 @@ namespace Interface_V2
             this.cbxPort = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gbxOverview = new System.Windows.Forms.GroupBox();
+            this.systemDiagram1 = new Interface_V2.SystemDiagram();
             this.gbxLogging = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.chartPress = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -92,7 +93,7 @@ namespace Interface_V2
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dialogConfig = new System.Windows.Forms.OpenFileDialog();
             this.dialogLog = new System.Windows.Forms.SaveFileDialog();
-            this.systemDiagram1 = new Interface_V2.SystemDiagram();
+            this.tmrPurge = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.gbxOverview.SuspendLayout();
             this.gbxLogging.SuspendLayout();
@@ -119,7 +120,7 @@ namespace Interface_V2
             this.tbxLogRX.Location = new System.Drawing.Point(6, 41);
             this.tbxLogRX.Name = "tbxLogRX";
             this.tbxLogRX.ReadOnly = true;
-            this.tbxLogRX.Size = new System.Drawing.Size(1411, 20);
+            this.tbxLogRX.Size = new System.Drawing.Size(1408, 20);
             this.tbxLogRX.TabIndex = 24;
             // 
             // tbxLogTX
@@ -130,12 +131,11 @@ namespace Interface_V2
             this.tbxLogTX.Location = new System.Drawing.Point(6, 19);
             this.tbxLogTX.Name = "tbxLogTX";
             this.tbxLogTX.ReadOnly = true;
-            this.tbxLogTX.Size = new System.Drawing.Size(1411, 20);
+            this.tbxLogTX.Size = new System.Drawing.Size(1408, 20);
             this.tbxLogTX.TabIndex = 23;
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // groupBox1
@@ -158,7 +158,7 @@ namespace Interface_V2
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1423, 50);
+            this.groupBox1.Size = new System.Drawing.Size(1420, 50);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connection";
@@ -167,7 +167,7 @@ namespace Interface_V2
             // 
             this.tbxConfigIdent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxConfigIdent.Location = new System.Drawing.Point(1268, 19);
+            this.tbxConfigIdent.Location = new System.Drawing.Point(1261, 20);
             this.tbxConfigIdent.Name = "tbxConfigIdent";
             this.tbxConfigIdent.ReadOnly = true;
             this.tbxConfigIdent.Size = new System.Drawing.Size(147, 20);
@@ -178,7 +178,7 @@ namespace Interface_V2
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1220, 22);
+            this.label4.Location = new System.Drawing.Point(1213, 24);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 23;
@@ -188,9 +188,9 @@ namespace Interface_V2
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(1107, 16);
+            this.btnConfig.Location = new System.Drawing.Point(1100, 18);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(98, 23);
+            this.btnConfig.Size = new System.Drawing.Size(98, 22);
             this.btnConfig.TabIndex = 22;
             this.btnConfig.Text = "LOAD CONFIG";
             this.btnConfig.UseVisualStyleBackColor = true;
@@ -286,10 +286,21 @@ namespace Interface_V2
             this.gbxOverview.Controls.Add(this.systemDiagram1);
             this.gbxOverview.Location = new System.Drawing.Point(3, 59);
             this.gbxOverview.Name = "gbxOverview";
-            this.gbxOverview.Size = new System.Drawing.Size(706, 395);
+            this.gbxOverview.Size = new System.Drawing.Size(706, 393);
             this.gbxOverview.TabIndex = 19;
             this.gbxOverview.TabStop = false;
             this.gbxOverview.Text = "System Overview";
+            // 
+            // systemDiagram1
+            // 
+            this.systemDiagram1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.systemDiagram1.Location = new System.Drawing.Point(6, 19);
+            this.systemDiagram1.Name = "systemDiagram1";
+            this.systemDiagram1.Size = new System.Drawing.Size(694, 368);
+            this.systemDiagram1.TabIndex = 0;
+            this.systemDiagram1.Text = "systemDiagram1";
             // 
             // gbxLogging
             // 
@@ -301,7 +312,7 @@ namespace Interface_V2
             this.gbxLogging.Location = new System.Drawing.Point(715, 59);
             this.gbxLogging.Name = "gbxLogging";
             this.tableLayoutPanel1.SetRowSpan(this.gbxLogging, 2);
-            this.gbxLogging.Size = new System.Drawing.Size(711, 501);
+            this.gbxLogging.Size = new System.Drawing.Size(708, 499);
             this.gbxLogging.TabIndex = 20;
             this.gbxLogging.TabStop = false;
             this.gbxLogging.Text = "Data Logging";
@@ -323,7 +334,7 @@ namespace Interface_V2
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(699, 476);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(696, 474);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // chartPress
@@ -334,7 +345,7 @@ namespace Interface_V2
             chartArea3.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea3.AxisY.Maximum = 2D;
             chartArea3.AxisY.Minimum = -1D;
-            chartArea3.AxisY.Title = "Pressure [bar]";
+            chartArea3.AxisY.Title = "Pressure [kPa]";
             chartArea3.Name = "ChartArea1";
             chartArea3.Position.Auto = false;
             chartArea3.Position.Height = 100F;
@@ -344,7 +355,7 @@ namespace Interface_V2
             legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
             legend3.Name = "Legend1";
             this.chartPress.Legends.Add(legend3);
-            this.chartPress.Location = new System.Drawing.Point(3, 225);
+            this.chartPress.Location = new System.Drawing.Point(3, 224);
             this.chartPress.Name = "chartPress";
             this.chartPress.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
             series13.ChartArea = "ChartArea1";
@@ -377,7 +388,7 @@ namespace Interface_V2
             this.chartPress.Series.Add(series16);
             this.chartPress.Series.Add(series17);
             this.chartPress.Series.Add(series18);
-            this.chartPress.Size = new System.Drawing.Size(693, 216);
+            this.chartPress.Size = new System.Drawing.Size(690, 215);
             this.chartPress.TabIndex = 1;
             this.chartPress.Text = "chart1";
             // 
@@ -430,7 +441,7 @@ namespace Interface_V2
             this.chartTemp.Series.Add(series22);
             this.chartTemp.Series.Add(series23);
             this.chartTemp.Series.Add(series24);
-            this.chartTemp.Size = new System.Drawing.Size(693, 216);
+            this.chartTemp.Size = new System.Drawing.Size(690, 215);
             this.chartTemp.TabIndex = 0;
             this.chartTemp.Text = "chart1";
             // 
@@ -442,15 +453,15 @@ namespace Interface_V2
             this.panel1.Controls.Add(this.btnLogSave);
             this.panel1.Controls.Add(this.btnLogStop);
             this.panel1.Controls.Add(this.btnLogStart);
-            this.panel1.Location = new System.Drawing.Point(3, 447);
+            this.panel1.Location = new System.Drawing.Point(3, 445);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(693, 26);
+            this.panel1.Size = new System.Drawing.Size(690, 26);
             this.panel1.TabIndex = 2;
             // 
             // btnLogSave
             // 
             this.btnLogSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogSave.Location = new System.Drawing.Point(616, 2);
+            this.btnLogSave.Location = new System.Drawing.Point(613, 2);
             this.btnLogSave.Name = "btnLogSave";
             this.btnLogSave.Size = new System.Drawing.Size(75, 23);
             this.btnLogSave.TabIndex = 2;
@@ -461,7 +472,7 @@ namespace Interface_V2
             // btnLogStop
             // 
             this.btnLogStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogStop.Location = new System.Drawing.Point(535, 2);
+            this.btnLogStop.Location = new System.Drawing.Point(532, 2);
             this.btnLogStop.Name = "btnLogStop";
             this.btnLogStop.Size = new System.Drawing.Size(75, 23);
             this.btnLogStop.TabIndex = 1;
@@ -472,7 +483,7 @@ namespace Interface_V2
             // btnLogStart
             // 
             this.btnLogStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogStart.Location = new System.Drawing.Point(454, 2);
+            this.btnLogStart.Location = new System.Drawing.Point(451, 2);
             this.btnLogStart.Name = "btnLogStart";
             this.btnLogStart.Size = new System.Drawing.Size(75, 23);
             this.btnLogStart.TabIndex = 0;
@@ -489,7 +500,7 @@ namespace Interface_V2
             this.gbxControls.Controls.Add(this.groupBox2);
             this.gbxControls.Controls.Add(this.label6);
             this.gbxControls.Controls.Add(this.label5);
-            this.gbxControls.Location = new System.Drawing.Point(3, 460);
+            this.gbxControls.Location = new System.Drawing.Point(3, 458);
             this.gbxControls.Name = "gbxControls";
             this.gbxControls.Size = new System.Drawing.Size(706, 100);
             this.gbxControls.TabIndex = 21;
@@ -516,10 +527,11 @@ namespace Interface_V2
             this.cbxHeliumFlow.AutoSize = true;
             this.cbxHeliumFlow.Location = new System.Drawing.Point(87, 20);
             this.cbxHeliumFlow.Name = "cbxHeliumFlow";
-            this.cbxHeliumFlow.Size = new System.Drawing.Size(114, 17);
+            this.cbxHeliumFlow.Size = new System.Drawing.Size(105, 17);
             this.cbxHeliumFlow.TabIndex = 11;
-            this.cbxHeliumFlow.Text = "HE TO OX VALVE";
+            this.cbxHeliumFlow.Text = "HELIUM BLEED";
             this.cbxHeliumFlow.UseVisualStyleBackColor = true;
+            this.cbxHeliumFlow.CheckedChanged += new System.EventHandler(this.cbxHeliumFlow_CheckedChanged);
             // 
             // btnPurgeOx
             // 
@@ -665,9 +677,9 @@ namespace Interface_V2
             this.tableLayoutPanel1.SetColumnSpan(this.gbxComms, 2);
             this.gbxComms.Controls.Add(this.tbxLogRX);
             this.gbxComms.Controls.Add(this.tbxLogTX);
-            this.gbxComms.Location = new System.Drawing.Point(3, 566);
+            this.gbxComms.Location = new System.Drawing.Point(3, 564);
             this.gbxComms.Name = "gbxComms";
-            this.gbxComms.Size = new System.Drawing.Size(1423, 66);
+            this.gbxComms.Size = new System.Drawing.Size(1420, 66);
             this.gbxComms.TabIndex = 22;
             this.gbxComms.TabStop = false;
             this.gbxComms.Text = "Raw Data";
@@ -692,7 +704,7 @@ namespace Interface_V2
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1429, 635);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1426, 633);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
             // dialogConfig
@@ -704,24 +716,18 @@ namespace Interface_V2
             // 
             this.dialogLog.Filter = "CSV Files|*.csv";
             // 
-            // systemDiagram1
+            // tmrPurge
             // 
-            this.systemDiagram1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.systemDiagram1.Location = new System.Drawing.Point(6, 19);
-            this.systemDiagram1.Name = "systemDiagram1";
-            this.systemDiagram1.Size = new System.Drawing.Size(694, 370);
-            this.systemDiagram1.TabIndex = 0;
-            this.systemDiagram1.Text = "systemDiagram1";
+            this.tmrPurge.Interval = 1000;
+            this.tmrPurge.Tick += new System.EventHandler(this.tmrPurge_Tick);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1430, 636);
+            this.ClientSize = new System.Drawing.Size(1426, 635);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(1446, 675);
+            this.MinimumSize = new System.Drawing.Size(1442, 674);
             this.Name = "FormMain";
             this.Text = "CAT GSE Controller";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -795,6 +801,7 @@ namespace Interface_V2
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cbxHeliumFlow;
+        private System.Windows.Forms.Timer tmrPurge;
     }
 }
 

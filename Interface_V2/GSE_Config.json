@@ -1,10 +1,10 @@
 {
   "config_name": "GSE CONFIG TEST",
-  "logging_history_points": 20,
-  "logging_interval": 1000,
-  "diagram_path": "D:\\Projects\\CAT\\User Interfaces Source Code\\Interface_V2\\Interface_V2\\diagram.png",
+  "logging_history_points": 100,
+  "logging_interval": 500,
+  "diagram_path": "diagram.png",
   "pressure_min": 0,
-  "pressure_max": 50,
+  "pressure_max": 7500,
   "temperature_min": 0,
   "temperature_max": 1000,
   "oxidizer_state_machine": {
@@ -48,45 +48,136 @@
   },
   "valves": [
     {
-      "valve_name": "HE_BLEED_VALVE",
-      "valve_state0_us": 500,
-      "valve_state1_us": 2000
+      "valve_name": "VALVE_OX_PURGE",
+      "valve_state0_us": 1130,
+      "valve_state1_us": 360,
+	  "diagram_position_x": 0.385,
+	  "diagram_position_y": 0.265,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 0,
+	  "diagram_state1_angle": -90
+    },
+	{
+      "valve_name": "VALVE_FUEL_PURGE",
+      "valve_state0_us": 1220,
+      "valve_state1_us": 390,
+	  "diagram_position_x": 0.615,
+	  "diagram_position_y": 0.265,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 0,
+	  "diagram_state1_angle": 90
+    },
+	{
+      "valve_name": "VALVE_OX_MAIN",
+      "valve_state0_us": 1830,
+      "valve_state1_us": 1120,
+	  "diagram_position_x": 0.307,
+	  "diagram_position_y": 0.382,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 90,
+	  "diagram_state1_angle": 180
+    },
+	{
+      "valve_name": "VALVE_FUEL_MAIN",
+      "valve_state0_us": 1870,
+      "valve_state1_us": 1090,
+	  "diagram_position_x": 0.692,
+	  "diagram_position_y": 0.382,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 90,
+	  "diagram_state1_angle": 0
+    },
+	{
+      "valve_name": "VALVE_OX_FILL",
+      "valve_state0_us": 1460,
+      "valve_state1_us": 770,
+	  "diagram_position_x": 0.230,
+	  "diagram_position_y": 0.500,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 0,
+	  "diagram_state1_angle": -90
+    },
+	{
+      "valve_name": "VALVE_FUEL_FILL",
+      "valve_state0_us": 1860,
+      "valve_state1_us": 1010,
+	  "diagram_position_x": 0.770,
+	  "diagram_position_y": 0.500,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 0,
+	  "diagram_state1_angle": 90
+    },
+	{
+      "valve_name": "VALVE_HE_BLEED",
+      "valve_state0_us": 1130,
+      "valve_state1_us": 490,
+	  "diagram_position_x": 0.461,
+	  "diagram_position_y": 0.618,
+	  "diagram_type": "I",
+	  "diagram_state0_angle": 90,
+	  "diagram_state1_angle": 180
+    },
+	{
+      "valve_name": "VALVE_OX_VENT",
+      "valve_state0_us": 530,
+      "valve_state1_us": 1820,
+	  "diagram_position_x": 0.308,
+	  "diagram_position_y": 0.793,
+	  "diagram_type": "L",
+	  "diagram_state0_angle": -90,
+	  "diagram_state1_angle": 0
+    },
+	{
+      "valve_name": "VALVE_FUEL_VENT",
+      "valve_state0_us": 610,
+      "valve_state1_us": 1850,
+	  "diagram_position_x": 0.692,
+	  "diagram_position_y": 0.793,
+	  "diagram_type": "L",
+	  "diagram_state0_angle": 0,
+	  "diagram_state1_angle": -90
     }
-  ]
+  ],
   "pressure_sensors": [
     {
-      "diagram_position_x": 0.10,
-      "diagram_position_y": 0.08,
+      "diagram_position_x": 0.202,
+      "diagram_position_y": 0.205,
+	  "diagram_align": "R",
       "sensor_type": 32,
       "sensor_name": "PRESS_OX_CHAMB"
     },
     {
-      "diagram_position_x": 0.60,
-      "diagram_position_y": 0.08,
+      "diagram_position_x": 0.797,
+      "diagram_position_y": 0.205,
+	  "diagram_align": "L",
       "sensor_type": 32,
       "sensor_name": "PRESS_FUEL_CHAMB"
     },
     {
-      "diagram_position_x": 0.21,
-      "diagram_position_y": 0.30,
+      "diagram_position_x": 0.644,
+      "diagram_position_y": 0.852,
+	  "diagram_align": "L",
       "sensor_type": 32,
       "sensor_name": "PRESS_N2_TANK"
     },
     {
-      "diagram_position_x": -0.18,
-      "diagram_position_y": 0.565,
+      "diagram_position_x": 0.202,
+      "diagram_position_y": 0.441,
+	  "diagram_align": "R",
       "sensor_type": 32,
       "sensor_name": "PRESS_OX_TANK"
     },
     {
-      "diagram_position_x": 0.88,
-      "diagram_position_y": 0.565,
+      "diagram_position_x": 0.797,
+      "diagram_position_y": 0.441,
+	  "diagram_align": "L",
       "sensor_type": 32,
       "sensor_name": "PRESS_FUEL_TANK"
     },
     {
-      "diagram_position_x": 0.26,
-      "diagram_position_y": 0.85,
+      "diagram_position_x": 0.374,
+      "diagram_position_y": 0.852,
+	  "diagram_align": "R",
       "sensor_type": 32,
       "sensor_name": "PRESS_HE_TANK"
     }

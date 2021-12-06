@@ -15,11 +15,13 @@ namespace Interface_V2
         private Image image;
         public GSE.SensorData temperatureData;
         public GSE.SensorData pressureData;
+        public GSE.ServoData valveData;
         private Config config;
 
         public SystemDiagram()
         {
             InitializeComponent();
+            DoubleBuffered = true;
         }
 
         protected override void OnPaint(PaintEventArgs pe)
@@ -66,13 +68,42 @@ namespace Interface_V2
 
                     if (pressureData.sensors != null)
                     {
-                        string text = config.baseSettings.pressure_sensors[i].sensor_name + ": " + pressureData.sensors[i].ToString("0.00") + " bar";
+                        string text = config.baseSettings.pressure_sensors[i].sensor_name + ": " + (pressureData.sensors[i]/1000).ToString("0.00") + " kPa";
                         int tx = (int)(imageX + (float)imageWidth * config.baseSettings.pressure_sensors[i].diagram_position_x);
                         int ty = (int)(imageY + (float)imageHeight * config.baseSettings.pressure_sensors[i].diagram_position_y);
-                        pe.Graphics.DrawString(text, font, brush, tx, ty);
+                        StringFormat format = new StringFormat();
+                        format.Alignment = config.baseSettings.pressure_sensors[i].diagram_align == "L" ? StringAlignment.Near : StringAlignment.Far;
+                        pe.Graphics.DrawString(text, font, brush, tx, ty-5, format);
                     }
                 }
-                
+
+                Pen pen = new Pen(Color.Black, 3);
+
+                if (valveData.servos == null) return;
+
+                for (int i = 0; i < 16 && i < config.baseSettings.valves.Count; i++)
+                {
+                    string type = config.baseSettings.valves[i].diagram_type;
+                    int tx = (int)(imageX + (float)imageWidth * config.baseSettings.valves[i].diagram_position_x);
+                    int ty = (int)(imageY + (float)imageHeight * config.baseSettings.valves[i].diagram_position_y);
+                    double angle_state0 = config.baseSettings.valves[i].diagram_state0_angle;
+                    double angle_state1 = config.baseSettings.valves[i].diagram_state1_angle;
+                    int us_state0 = config.baseSettings.valves[i].valve_state0_us;
+                    int us_state1 = config.baseSettings.valves[i].valve_state1_us;
+                    double angle = Utilities.Map((double)valveData.servos[i], (double)us_state0, (double)us_state1, angle_state0, angle_state1);
+                    pe.Graphics.TranslateTransform((float)tx, (float)ty);
+                    pe.Graphics.RotateTransform((float)angle);
+                    if (type == "I")
+                    {
+                        pe.Graphics.DrawLine(pen, 0, -10, 0, 10);
+                    }
+                    else if (type == "L")
+                    {
+                        pe.Graphics.DrawLine(pen, 0, 0, 0, -10);
+                        pe.Graphics.DrawLine(pen, 0, 0, 10, 0);
+                    }
+                    pe.Graphics.ResetTransform();
+                }
             }
         }
 
