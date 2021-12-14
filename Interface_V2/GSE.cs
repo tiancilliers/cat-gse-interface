@@ -129,10 +129,5 @@ namespace Interface_V2
             Marshal.FreeHGlobal(handle);
             return arr;
         }
-
-        /*public byte FindServoID(string servoName)
-        {
-            for (int i = 0; i <ValidationConst)
-        }*/
     }
 }

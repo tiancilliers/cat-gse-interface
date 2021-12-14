@@ -11,38 +11,46 @@
     "states": [
       {
         "state_name": "OX_SAFE",
-        "lockout": 0,
-        "transitions": [
+        "targets": [
           {
             "trigger_type": "button",
             "button_name": "OX_FILLDRAIN",
-            "target_state": "OX_FILLDRAIN",
-            "transition": [
-              {
-                "delay_ms_before": 0,
-                "servo_name": "OX_FILLDRAIN",
-                "servo_state": 1
-              }
-            ]
+            "target_state": "OX_FILLDRAIN"
           },
           {
             "trigger_type": "button",
             "button_name": "OX_PRESS",
-            "target_state": "OX_PRESS",
-            "transition": [
-              {
-                "delay_ms_before": 0,
-                "servo_name": "OX_VENTPRESS",
-                "servo_state": 1
-              }
-            ]
+            "target_state": "OX_PRESS"
           }
-        ],
-        "abort": {
-          "trigger_type": "none",
-          "target_state": "ABORT",
-          "transition": []
-        }
+        ]
+      },
+	  {
+        "state_name": "OX_FILLDRAIN",
+        "targets": [
+          {
+            "trigger_type": "button",
+            "button_name": "OX_SAFE",
+            "target_state": "OX_SAFE"
+          }
+        ]
+      },
+	  {
+        "state_name": "OX_PRESS",
+        "targets": [
+          {
+            "trigger_type": "button",
+            "button_name": "OX_SAFE",
+            "target_state": "OX_SAFE"
+          },
+          {
+            "trigger_type": "button",
+            "button_name": "MAIN_FIRE",
+            "target_state": "OX_FIRE",
+			"transition": {
+				
+			}
+          }
+        ]
       }
     ]
   },
@@ -119,8 +127,8 @@
     },
 	{
       "valve_name": "VALVE_OX_VENT",
-      "valve_state0_us": 530,
-      "valve_state1_us": 1820,
+      "valve_state0_us": 630,
+      "valve_state1_us": 1720,
 	  "diagram_position_x": 0.308,
 	  "diagram_position_y": 0.793,
 	  "diagram_type": "L",
@@ -129,8 +137,8 @@
     },
 	{
       "valve_name": "VALVE_FUEL_VENT",
-      "valve_state0_us": 610,
-      "valve_state1_us": 1850,
+      "valve_state0_us": 1140,
+      "valve_state1_us": 2280,
 	  "diagram_position_x": 0.692,
 	  "diagram_position_y": 0.793,
 	  "diagram_type": "L",

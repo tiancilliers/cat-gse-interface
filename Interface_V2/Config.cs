@@ -24,6 +24,17 @@ namespace Interface_V2
                 MessageBox.Show("Unable to read config file", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public int FindServo(string servoName)
+        {
+            for (int i = 0; i < baseSettings.valves.Count; i++) if (servoName.Equals(baseSettings.valves[i].valve_name)) return i;
+            return -1;
+        }  
+    }
+
+    public class StateMachineSettings
+    {
+
     }
 
     public class BaseSettings

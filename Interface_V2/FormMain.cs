@@ -241,18 +241,38 @@ namespace Interface_V2
             tmrPurge.Enabled = false;
             btnPurgeFuel.Enabled = true;
             btnPurgeOx.Enabled = true;
-            //gse.SetValveState();
+            SetValveState("VALVE_OX_PURGE", 0.0);
+            SetValveState("VALVE_FUEL_PURGE", 0.0);
         }
 
         private void cbxHeliumFlow_CheckedChanged(object sender, EventArgs e)
         {
-            GSE.ServoData state0 = new GSE.ServoData();
-            state0.servos = new ushort[16];
-            for (int i = 0; i < config.baseSettings.valves.Count; i++)
-            {
-                state0.servos[i] = cbxHeliumFlow.Checked ? (ushort)config.baseSettings.valves[i].valve_state1_us : (ushort)config.baseSettings.valves[i].valve_state0_us;
-            }
-            gse.SetValveStates(state0);
+            SetValveState("VALVE_HE_BLEED", cbxHeliumFlow.Checked ? 1.0 : 0.0);
+            SetValveState("VALVE_OX_VENT", cbxHeliumFlow.Checked ? 1.0 : 0.0);
+            SetValveState("VALVE_FUEL_VENT", cbxHeliumFlow.Checked ? 1.0 : 0.0);
+        }
+
+        private void btnPurgeOx_Click(object sender, EventArgs e)
+        {
+            SetValveState("VALVE_OX_PURGE", 1.0);
+            tmrPurge.Enabled = true;
+            btnPurgeFuel.Enabled = false;
+            btnPurgeOx.Enabled = false;
+        }
+
+        private void SetValveState(string valve, double state)
+        {
+            int servoID = config.FindServo(valve);
+            if (servoID == -1) return;
+            gse.SetValveState((byte)servoID, (int)(config.baseSettings.valves[servoID].valve_state1_us*state + (config.baseSettings.valves[servoID].valve_state0_us) *(1-state)));
+        }
+
+        private void btnPurgeFuel_Click(object sender, EventArgs e)
+        {
+            SetValveState("VALVE_FUEL_PURGE", 1.0);
+            tmrPurge.Enabled = true;
+            btnPurgeFuel.Enabled = false;
+            btnPurgeOx.Enabled = false;
         }
     }
 }
