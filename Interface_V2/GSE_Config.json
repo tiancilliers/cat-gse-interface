@@ -137,8 +137,8 @@
     },
 	{
       "valve_name": "VALVE_FUEL_VENT",
-      "valve_state0_us": 1140,
-      "valve_state1_us": 2280,
+      "valve_state0_us": 2280,
+      "valve_state1_us": 1140,
 	  "diagram_position_x": 0.692,
 	  "diagram_position_y": 0.793,
 	  "diagram_type": "L",
