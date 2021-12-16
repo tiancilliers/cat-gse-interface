@@ -1,5 +1,5 @@
 {
-  "config_name": "GSE CONFIG TEST",
+  "config_name": "GSE CONFIG V1",
   "logging_history_points": 100,
   "logging_interval": 500,
   "diagram_path": "diagram.png",
@@ -11,219 +11,467 @@
     "states": [
       {
         "state_name": "OX_SAFE",
+        "valve_names": [
+          "VALVE_OX_MAIN",
+          "VALVE_OX_VENT",
+          "VALVE_OX_FILL"
+        ],
+        "valve_states": [
+          0,
+          0,
+          0
+        ],
         "targets": [
           {
-            "trigger_type": "button",
+            "trigger_type": "TRIGGER_BUTTON",
             "button_name": "OX_FILLDRAIN",
             "target_state": "OX_FILLDRAIN"
           },
           {
-            "trigger_type": "button",
+            "trigger_type": "TRIGGER_BUTTON",
             "button_name": "OX_PRESS",
             "target_state": "OX_PRESS"
           }
         ]
       },
-	  {
-        "state_name": "OX_FILLDRAIN",
+      {
+        "state_name": "OX_ABORT",
         "targets": [
           {
-            "trigger_type": "button",
+            "trigger_type": "TRIGGER_TIMER",
+            "timer_delay": 0,
+            "target_state": "OX_SAFE"
+          }
+        ]
+      },
+      {
+        "state_name": "OX_FILLDRAIN",
+        "valve_names": [
+          "VALVE_OX_MAIN",
+          "VALVE_OX_VENT",
+          "VALVE_OX_FILL"
+        ],
+        "valve_states": [
+          0,
+          0,
+          1
+        ],
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_BUTTON",
             "button_name": "OX_SAFE",
             "target_state": "OX_SAFE"
           }
         ]
       },
-	  {
+      {
         "state_name": "OX_PRESS",
+        "valve_names": [
+          "VALVE_OX_MAIN",
+          "VALVE_OX_VENT",
+          "VALVE_OX_FILL"
+        ],
+        "valve_states": [
+          0,
+          1,
+          0
+        ],
         "targets": [
           {
-            "trigger_type": "button",
+            "trigger_type": "TRIGGER_BUTTON",
             "button_name": "OX_SAFE",
             "target_state": "OX_SAFE"
           },
           {
-            "trigger_type": "button",
-            "button_name": "MAIN_FIRE",
+            "trigger_type": "TRIGGER_BUTTON",
+            "button_name": "FIRE",
             "target_state": "OX_FIRE",
-			"transition": {
-				
-			}
+            "transition": [
+              {
+                "delay_before": 0,
+                "valve_name": "VALVE_OX_MAIN",
+                "valve_state": 0.2
+              },
+              {
+                "delay_before": 1000,
+                "valve_name": "VALVE_OX_MAIN",
+                "valve_state": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "state_name": "OX_FIRE",
+        "valve_names": [
+          "VALVE_OX_MAIN",
+          "VALVE_OX_VENT",
+          "VALVE_OX_FILL"
+        ],
+        "valve_states": [
+          1,
+          1,
+          0
+        ],
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_TIMER",
+            "timer_delay": 0,
+            "target_state": "OX_PRESS",
+            "transition": [
+              {
+                "delay_before": 0,
+                "valve_name": "VALVE_OX_MAIN",
+                "valve_state": 0
+              },
+              {
+                "delay_before": 500,
+                "valve_name": "VALVE_OX_PURGE",
+                "valve_state": 1
+              },
+              {
+                "delay_before": 1000,
+                "valve_name": "VALVE_OX_PURGE",
+                "valve_state": 0
+              }
+            ]
           }
         ]
       }
     ]
   },
+  "fuel_state_machine": {
+    "states": [
+      {
+        "state_name": "FUEL_SAFE",
+        "valve_names": [
+          "VALVE_FUEL_MAIN",
+          "VALVE_FUEL_VENT",
+          "VALVE_FUEL_FILL"
+        ],
+        "valve_states": [
+          0,
+          0,
+          0
+        ],
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_BUTTON",
+            "button_name": "FUEL_FILLDRAIN",
+            "target_state": "FUEL_FILLDRAIN"
+          },
+          {
+            "trigger_type": "TRIGGER_BUTTON",
+            "button_name": "FUEL_PRESS",
+            "target_state": "FUEL_PRESS"
+          }
+        ]
+      },
+      {
+        "state_name": "FUEL_ABORT",
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_TIMER",
+            "timer_delay": 0,
+            "target_state": "FUEL_SAFE"
+          }
+        ]
+      },
+      {
+        "state_name": "FUEL_FILLDRAIN",
+        "valve_names": [
+          "VALVE_FUEL_MAIN",
+          "VALVE_FUEL_VENT",
+          "VALVE_FUEL_FILL"
+        ],
+        "valve_states": [
+          0,
+          0,
+          1
+        ],
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_BUTTON",
+            "button_name": "FUEL_SAFE",
+            "target_state": "FUEL_SAFE"
+          }
+        ]
+      },
+      {
+        "state_name": "FUEL_PRESS",
+        "valve_names": [
+          "VALVE_FUEL_MAIN",
+          "VALVE_FUEL_VENT",
+          "VALVE_FUEL_FILL"
+        ],
+        "valve_states": [
+          0,
+          1,
+          0
+        ],
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_BUTTON",
+            "button_name": "FUEL_SAFE",
+            "target_state": "FUEL_SAFE"
+          },
+          {
+            "trigger_type": "TRIGGER_BUTTON",
+            "button_name": "FIRE",
+            "target_state": "FUEL_FIRE",
+            "transition": [
+              {
+                "delay_before": 0,
+                "valve_name": "VALVE_FUEL_MAIN",
+                "valve_state": 0.2
+              },
+              {
+                "delay_before": 1000,
+                "valve_name": "VALVE_FUEL_MAIN",
+                "valve_state": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "state_name": "FUEL_FIRE",
+        "valve_names": [
+          "VALVE_FUEL_MAIN",
+          "VALVE_FUEL_VENT",
+          "VALVE_FUEL_FILL"
+        ],
+        "valve_states": [
+          1,
+          1,
+          0
+        ],
+        "targets": [
+          {
+            "trigger_type": "TRIGGER_TIMER",
+            "timer_delay": 0,
+            "target_state": "FUEL_PRESS",
+            "transition": [
+              {
+                "delay_before": 0,
+                "valve_name": "VALVE_FUEL_MAIN",
+                "valve_state": 0
+              },
+              {
+                "delay_before": 500,
+                "valve_name": "VALVE_FUEL_PURGE",
+                "valve_state": 1
+              },
+              {
+                "delay_before": 1000,
+                "valve_name": "VALVE_FUEL_PURGE",
+                "valve_state": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "buttons": [
+    {},
+    {
+      "button_name": "OX_FILLDRAIN",
+      "button_label": "FILL/DRAIN"
+    },
+    {
+      "button_name": "FUEL_FILLDRAIN",
+      "button_label": "FILL/DRAIN"
+    },
+    {
+      "button_name": "OX_SAFE",
+      "button_label": "SAFE"
+    },
+    {
+      "button_name": "FUEL_SAFE",
+      "button_label": "SAFE"
+    },
+    {
+      "button_name": "OX_PRESS",
+      "button_label": "PRESS"
+    },
+    {
+      "button_name": "FUEL_PRESS",
+      "button_label": "PRESS"
+    },
+    {
+      "button_name": "FIRE",
+      "button_label": "FIRE"
+    }
+  ],
   "valves": [
     {
       "valve_name": "VALVE_OX_PURGE",
       "valve_state0_us": 1130,
       "valve_state1_us": 360,
-	  "diagram_position_x": 0.385,
-	  "diagram_position_y": 0.265,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 0,
-	  "diagram_state1_angle": -90
+      "diagram_position_x": 0.385,
+      "diagram_position_y": 0.265,
+      "diagram_type": "I",
+      "diagram_state0_angle": 0,
+      "diagram_state1_angle": -90
     },
-	{
+    {
       "valve_name": "VALVE_FUEL_PURGE",
       "valve_state0_us": 1220,
       "valve_state1_us": 390,
-	  "diagram_position_x": 0.615,
-	  "diagram_position_y": 0.265,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 0,
-	  "diagram_state1_angle": 90
+      "diagram_position_x": 0.615,
+      "diagram_position_y": 0.265,
+      "diagram_type": "I",
+      "diagram_state0_angle": 0,
+      "diagram_state1_angle": 90
     },
-	{
+    {
       "valve_name": "VALVE_OX_MAIN",
       "valve_state0_us": 1830,
       "valve_state1_us": 1120,
-	  "diagram_position_x": 0.307,
-	  "diagram_position_y": 0.382,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 90,
-	  "diagram_state1_angle": 180
+      "diagram_position_x": 0.307,
+      "diagram_position_y": 0.382,
+      "diagram_type": "I",
+      "diagram_state0_angle": 90,
+      "diagram_state1_angle": 180
     },
-	{
+    {
       "valve_name": "VALVE_FUEL_MAIN",
       "valve_state0_us": 1870,
       "valve_state1_us": 1090,
-	  "diagram_position_x": 0.692,
-	  "diagram_position_y": 0.382,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 90,
-	  "diagram_state1_angle": 0
+      "diagram_position_x": 0.692,
+      "diagram_position_y": 0.382,
+      "diagram_type": "I",
+      "diagram_state0_angle": 90,
+      "diagram_state1_angle": 0
     },
-	{
+    {
       "valve_name": "VALVE_OX_FILL",
       "valve_state0_us": 1460,
       "valve_state1_us": 770,
-	  "diagram_position_x": 0.230,
-	  "diagram_position_y": 0.500,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 0,
-	  "diagram_state1_angle": -90
+      "diagram_position_x": 0.230,
+      "diagram_position_y": 0.500,
+      "diagram_type": "I",
+      "diagram_state0_angle": 0,
+      "diagram_state1_angle": -90
     },
-	{
+    {
       "valve_name": "VALVE_FUEL_FILL",
       "valve_state0_us": 1860,
       "valve_state1_us": 1010,
-	  "diagram_position_x": 0.770,
-	  "diagram_position_y": 0.500,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 0,
-	  "diagram_state1_angle": 90
+      "diagram_position_x": 0.770,
+      "diagram_position_y": 0.500,
+      "diagram_type": "I",
+      "diagram_state0_angle": 0,
+      "diagram_state1_angle": 90
     },
-	{
+    {
       "valve_name": "VALVE_HE_BLEED",
       "valve_state0_us": 1130,
       "valve_state1_us": 490,
-	  "diagram_position_x": 0.461,
-	  "diagram_position_y": 0.618,
-	  "diagram_type": "I",
-	  "diagram_state0_angle": 90,
-	  "diagram_state1_angle": 180
+      "diagram_position_x": 0.461,
+      "diagram_position_y": 0.618,
+      "diagram_type": "I",
+      "diagram_state0_angle": 90,
+      "diagram_state1_angle": 180
     },
-	{
+    {
       "valve_name": "VALVE_OX_VENT",
       "valve_state0_us": 630,
       "valve_state1_us": 1720,
-	  "diagram_position_x": 0.308,
-	  "diagram_position_y": 0.793,
-	  "diagram_type": "L",
-	  "diagram_state0_angle": -90,
-	  "diagram_state1_angle": 0
+      "diagram_position_x": 0.308,
+      "diagram_position_y": 0.793,
+      "diagram_type": "L",
+      "diagram_state0_angle": -90,
+      "diagram_state1_angle": 0
     },
-	{
+    {
       "valve_name": "VALVE_FUEL_VENT",
       "valve_state0_us": 2280,
       "valve_state1_us": 1140,
-	  "diagram_position_x": 0.692,
-	  "diagram_position_y": 0.793,
-	  "diagram_type": "L",
-	  "diagram_state0_angle": 0,
-	  "diagram_state1_angle": -90
+      "diagram_position_x": 0.692,
+      "diagram_position_y": 0.793,
+      "diagram_type": "L",
+      "diagram_state0_angle": 0,
+      "diagram_state1_angle": -90
+    },
+    {
+      "valve_name": "VALVE_IGN_OX",
+      "valve_state0_us": 650,
+      "valve_state1_us": 1500
+    },
+    {
+      "valve_name": "VALVE_IGN_FUEL",
+      "valve_state0_us": 450,
+      "valve_state1_us": 1300
     }
   ],
   "pressure_sensors": [
     {
       "diagram_position_x": 0.202,
       "diagram_position_y": 0.205,
-	  "diagram_align": "R",
+      "diagram_align": "R",
       "sensor_type": 32,
       "sensor_name": "PRESS_OX_CHAMB"
     },
     {
       "diagram_position_x": 0.797,
       "diagram_position_y": 0.205,
-	  "diagram_align": "L",
+      "diagram_align": "L",
       "sensor_type": 32,
       "sensor_name": "PRESS_FUEL_CHAMB"
     },
     {
       "diagram_position_x": 0.644,
       "diagram_position_y": 0.852,
-	  "diagram_align": "L",
+      "diagram_align": "L",
       "sensor_type": 32,
       "sensor_name": "PRESS_N2_TANK"
     },
     {
       "diagram_position_x": 0.202,
       "diagram_position_y": 0.441,
-	  "diagram_align": "R",
+      "diagram_align": "R",
       "sensor_type": 32,
       "sensor_name": "PRESS_OX_TANK"
     },
     {
       "diagram_position_x": 0.797,
       "diagram_position_y": 0.441,
-	  "diagram_align": "L",
+      "diagram_align": "L",
       "sensor_type": 32,
       "sensor_name": "PRESS_FUEL_TANK"
     },
     {
       "diagram_position_x": 0.374,
       "diagram_position_y": 0.852,
-	  "diagram_align": "R",
+      "diagram_align": "R",
       "sensor_type": 32,
       "sensor_name": "PRESS_HE_TANK"
     }
   ],
   "temperature_sensors": [
     {
-      "diagram_position_x": 0,
-      "diagram_position_y": 0,
       "sensor_type": 16,
       "sensor_name": "TEMP_0"
     },
     {
-      "diagram_position_x": 0,
-      "diagram_position_y": 0,
       "sensor_type": 16,
       "sensor_name": "TEMP_1"
     },
     {
-      "diagram_position_x": 0,
-      "diagram_position_y": 0,
       "sensor_type": 16,
       "sensor_name": "TEMP_2"
     },
     {
-      "diagram_position_x": 0,
-      "diagram_position_y": 0,
       "sensor_type": 16,
       "sensor_name": "TEMP_3"
     },
     {
-      "diagram_position_x": 0,
-      "diagram_position_y": 0,
       "sensor_type": 16,
       "sensor_name": "TEMP_4"
     },
     {
-      "diagram_position_x": 0,
-      "diagram_position_y": 0,
       "sensor_type": 16,
       "sensor_name": "TEMP_5"
     }

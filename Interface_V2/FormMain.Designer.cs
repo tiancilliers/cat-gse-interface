@@ -30,22 +30,22 @@ namespace Interface_V2
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series97 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series98 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series99 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series100 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series101 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series102 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea18 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend18 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series103 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series104 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series105 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series106 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series107 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series108 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.port1 = new System.IO.Ports.SerialPort(this.components);
             this.tbxLogRX = new System.Windows.Forms.TextBox();
             this.tbxLogTX = new System.Windows.Forms.TextBox();
@@ -81,7 +81,7 @@ namespace Interface_V2
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnState1 = new System.Windows.Forms.Button();
             this.btnState2 = new System.Windows.Forms.Button();
-            this.btnState8 = new System.Windows.Forms.Button();
+            this.btnAbort = new System.Windows.Forms.Button();
             this.btnState3 = new System.Windows.Forms.Button();
             this.btnState7 = new System.Windows.Forms.Button();
             this.btnState5 = new System.Windows.Forms.Button();
@@ -118,11 +118,10 @@ namespace Interface_V2
             this.tbxLogRX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxLogRX.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxLogRX.Location = new System.Drawing.Point(8, 50);
-            this.tbxLogRX.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxLogRX.Location = new System.Drawing.Point(6, 41);
             this.tbxLogRX.Name = "tbxLogRX";
             this.tbxLogRX.ReadOnly = true;
-            this.tbxLogRX.Size = new System.Drawing.Size(1876, 20);
+            this.tbxLogRX.Size = new System.Drawing.Size(1408, 20);
             this.tbxLogRX.TabIndex = 24;
             // 
             // tbxLogTX
@@ -130,11 +129,10 @@ namespace Interface_V2
             this.tbxLogTX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbxLogTX.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxLogTX.Location = new System.Drawing.Point(8, 23);
-            this.tbxLogTX.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxLogTX.Location = new System.Drawing.Point(6, 19);
             this.tbxLogTX.Name = "tbxLogTX";
             this.tbxLogTX.ReadOnly = true;
-            this.tbxLogTX.Size = new System.Drawing.Size(1876, 20);
+            this.tbxLogTX.Size = new System.Drawing.Size(1408, 20);
             this.tbxLogTX.TabIndex = 23;
             // 
             // timer1
@@ -160,11 +158,9 @@ namespace Interface_V2
             this.groupBox1.Controls.Add(this.btnPortOpen);
             this.groupBox1.Controls.Add(this.cbxPort);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1893, 61);
+            this.groupBox1.Size = new System.Drawing.Size(1420, 50);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Connection";
@@ -173,11 +169,10 @@ namespace Interface_V2
             // 
             this.tbxConfigIdent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxConfigIdent.Location = new System.Drawing.Point(1681, 25);
-            this.tbxConfigIdent.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxConfigIdent.Location = new System.Drawing.Point(1261, 20);
             this.tbxConfigIdent.Name = "tbxConfigIdent";
             this.tbxConfigIdent.ReadOnly = true;
-            this.tbxConfigIdent.Size = new System.Drawing.Size(195, 22);
+            this.tbxConfigIdent.Size = new System.Drawing.Size(147, 20);
             this.tbxConfigIdent.TabIndex = 24;
             // 
             // label4
@@ -185,10 +180,9 @@ namespace Interface_V2
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1617, 30);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(1213, 24);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 16);
+            this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 23;
             this.label4.Text = "Config";
             // 
@@ -196,12 +190,11 @@ namespace Interface_V2
             // 
             this.btnConfig.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConfig.Location = new System.Drawing.Point(1467, 22);
-            this.btnConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfig.Location = new System.Drawing.Point(1085, 18);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(131, 26);
+            this.btnConfig.Size = new System.Drawing.Size(113, 21);
             this.btnConfig.TabIndex = 22;
-            this.btnConfig.Text = "LOAD CONFIG";
+            this.btnConfig.Text = "RELOAD CONFIG";
             this.btnConfig.UseVisualStyleBackColor = true;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
@@ -209,11 +202,10 @@ namespace Interface_V2
             // 
             this.tbxVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbxVersion.Location = new System.Drawing.Point(829, 22);
-            this.tbxVersion.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxVersion.Location = new System.Drawing.Point(622, 18);
             this.tbxVersion.Name = "tbxVersion";
             this.tbxVersion.ReadOnly = true;
-            this.tbxVersion.Size = new System.Drawing.Size(195, 22);
+            this.tbxVersion.Size = new System.Drawing.Size(147, 20);
             this.tbxVersion.TabIndex = 21;
             // 
             // label2
@@ -221,10 +213,9 @@ namespace Interface_V2
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(765, 26);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(574, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 16);
+            this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 20;
             this.label2.Text = "Version";
             // 
@@ -232,11 +223,10 @@ namespace Interface_V2
             // 
             this.tbxIdent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbxIdent.Location = new System.Drawing.Point(561, 22);
-            this.tbxIdent.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxIdent.Location = new System.Drawing.Point(421, 18);
             this.tbxIdent.Name = "tbxIdent";
             this.tbxIdent.ReadOnly = true;
-            this.tbxIdent.Size = new System.Drawing.Size(195, 22);
+            this.tbxIdent.Size = new System.Drawing.Size(147, 20);
             this.tbxIdent.TabIndex = 19;
             // 
             // label1
@@ -244,20 +234,18 @@ namespace Interface_V2
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(491, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(368, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(58, 16);
+            this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "Identifier";
             // 
             // btnPortClose
             // 
             this.btnPortClose.Enabled = false;
-            this.btnPortClose.Location = new System.Drawing.Point(373, 21);
-            this.btnPortClose.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPortClose.Location = new System.Drawing.Point(280, 17);
             this.btnPortClose.Name = "btnPortClose";
-            this.btnPortClose.Size = new System.Drawing.Size(100, 28);
+            this.btnPortClose.Size = new System.Drawing.Size(75, 23);
             this.btnPortClose.TabIndex = 16;
             this.btnPortClose.Text = "CLOSE";
             this.btnPortClose.UseVisualStyleBackColor = true;
@@ -265,10 +253,9 @@ namespace Interface_V2
             // 
             // btnPortOpen
             // 
-            this.btnPortOpen.Location = new System.Drawing.Point(265, 21);
-            this.btnPortOpen.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPortOpen.Location = new System.Drawing.Point(199, 17);
             this.btnPortOpen.Name = "btnPortOpen";
-            this.btnPortOpen.Size = new System.Drawing.Size(100, 28);
+            this.btnPortOpen.Size = new System.Drawing.Size(75, 23);
             this.btnPortOpen.TabIndex = 15;
             this.btnPortOpen.Text = "OPEN";
             this.btnPortOpen.UseVisualStyleBackColor = true;
@@ -277,20 +264,18 @@ namespace Interface_V2
             // cbxPort
             // 
             this.cbxPort.FormattingEnabled = true;
-            this.cbxPort.Location = new System.Drawing.Point(61, 23);
-            this.cbxPort.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxPort.Location = new System.Drawing.Point(46, 19);
             this.cbxPort.Name = "cbxPort";
-            this.cbxPort.Size = new System.Drawing.Size(195, 24);
+            this.cbxPort.Size = new System.Drawing.Size(147, 21);
             this.cbxPort.TabIndex = 14;
             this.cbxPort.DropDown += new System.EventHandler(this.cbxPort_DropDown);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 27);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(14, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 16);
+            this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "Port";
             // 
@@ -301,11 +286,9 @@ namespace Interface_V2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxOverview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gbxOverview.Controls.Add(this.systemDiagram1);
-            this.gbxOverview.Location = new System.Drawing.Point(4, 73);
-            this.gbxOverview.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxOverview.Location = new System.Drawing.Point(3, 59);
             this.gbxOverview.Name = "gbxOverview";
-            this.gbxOverview.Padding = new System.Windows.Forms.Padding(4);
-            this.gbxOverview.Size = new System.Drawing.Size(941, 483);
+            this.gbxOverview.Size = new System.Drawing.Size(706, 393);
             this.gbxOverview.TabIndex = 19;
             this.gbxOverview.TabStop = false;
             this.gbxOverview.Text = "System Overview";
@@ -315,10 +298,9 @@ namespace Interface_V2
             this.systemDiagram1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.systemDiagram1.Location = new System.Drawing.Point(8, 23);
-            this.systemDiagram1.Margin = new System.Windows.Forms.Padding(4);
+            this.systemDiagram1.Location = new System.Drawing.Point(6, 19);
             this.systemDiagram1.Name = "systemDiagram1";
-            this.systemDiagram1.Size = new System.Drawing.Size(925, 452);
+            this.systemDiagram1.Size = new System.Drawing.Size(694, 368);
             this.systemDiagram1.TabIndex = 0;
             this.systemDiagram1.Text = "systemDiagram1";
             // 
@@ -329,12 +311,10 @@ namespace Interface_V2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbxLogging.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.gbxLogging.Controls.Add(this.tableLayoutPanel2);
-            this.gbxLogging.Location = new System.Drawing.Point(953, 73);
-            this.gbxLogging.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxLogging.Location = new System.Drawing.Point(715, 59);
             this.gbxLogging.Name = "gbxLogging";
-            this.gbxLogging.Padding = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.SetRowSpan(this.gbxLogging, 2);
-            this.gbxLogging.Size = new System.Drawing.Size(944, 613);
+            this.gbxLogging.Size = new System.Drawing.Size(708, 499);
             this.gbxLogging.TabIndex = 20;
             this.gbxLogging.TabStop = false;
             this.gbxLogging.Text = "Data Logging";
@@ -349,15 +329,14 @@ namespace Interface_V2
             this.tableLayoutPanel2.Controls.Add(this.chartPress, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.chartTemp, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(8, 23);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(928, 582);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(696, 474);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // chartPress
@@ -365,54 +344,53 @@ namespace Interface_V2
             this.chartPress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea1.AxisY.Maximum = 2D;
-            chartArea1.AxisY.Minimum = -1D;
-            chartArea1.AxisY.Title = "Pressure [kPa]";
-            chartArea1.Name = "ChartArea1";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 100F;
-            chartArea1.Position.Width = 100F;
-            this.chartPress.ChartAreas.Add(chartArea1);
-            legend1.DockedToChartArea = "ChartArea1";
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
-            legend1.Name = "Legend1";
-            this.chartPress.Legends.Add(legend1);
-            this.chartPress.Location = new System.Drawing.Point(4, 275);
-            this.chartPress.Margin = new System.Windows.Forms.Padding(4);
+            chartArea17.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea17.AxisY.Maximum = 2D;
+            chartArea17.AxisY.Minimum = -1D;
+            chartArea17.AxisY.Title = "Pressure [kPa]";
+            chartArea17.Name = "ChartArea1";
+            chartArea17.Position.Auto = false;
+            chartArea17.Position.Height = 100F;
+            chartArea17.Position.Width = 100F;
+            this.chartPress.ChartAreas.Add(chartArea17);
+            legend17.DockedToChartArea = "ChartArea1";
+            legend17.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            legend17.Name = "Legend1";
+            this.chartPress.Legends.Add(legend17);
+            this.chartPress.Location = new System.Drawing.Point(3, 224);
             this.chartPress.Name = "chartPress";
             this.chartPress.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Series3";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "Series4";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Series5";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Legend = "Legend1";
-            series6.Name = "Series6";
-            this.chartPress.Series.Add(series1);
-            this.chartPress.Series.Add(series2);
-            this.chartPress.Series.Add(series3);
-            this.chartPress.Series.Add(series4);
-            this.chartPress.Series.Add(series5);
-            this.chartPress.Series.Add(series6);
-            this.chartPress.Size = new System.Drawing.Size(920, 263);
+            series97.ChartArea = "ChartArea1";
+            series97.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series97.Legend = "Legend1";
+            series97.Name = "Series1";
+            series98.ChartArea = "ChartArea1";
+            series98.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series98.Legend = "Legend1";
+            series98.Name = "Series2";
+            series99.ChartArea = "ChartArea1";
+            series99.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series99.Legend = "Legend1";
+            series99.Name = "Series3";
+            series100.ChartArea = "ChartArea1";
+            series100.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series100.Legend = "Legend1";
+            series100.Name = "Series4";
+            series101.ChartArea = "ChartArea1";
+            series101.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series101.Legend = "Legend1";
+            series101.Name = "Series5";
+            series102.ChartArea = "ChartArea1";
+            series102.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series102.Legend = "Legend1";
+            series102.Name = "Series6";
+            this.chartPress.Series.Add(series97);
+            this.chartPress.Series.Add(series98);
+            this.chartPress.Series.Add(series99);
+            this.chartPress.Series.Add(series100);
+            this.chartPress.Series.Add(series101);
+            this.chartPress.Series.Add(series102);
+            this.chartPress.Size = new System.Drawing.Size(690, 215);
             this.chartPress.TabIndex = 1;
             this.chartPress.Text = "chart1";
             // 
@@ -421,52 +399,51 @@ namespace Interface_V2
             this.chartTemp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea2.AxisY.Title = "Temperature [K]";
-            chartArea2.Name = "ChartArea1";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 100F;
-            chartArea2.Position.Width = 100F;
-            this.chartTemp.ChartAreas.Add(chartArea2);
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
-            legend2.Name = "Legend1";
-            this.chartTemp.Legends.Add(legend2);
-            this.chartTemp.Location = new System.Drawing.Point(4, 4);
-            this.chartTemp.Margin = new System.Windows.Forms.Padding(4);
+            chartArea18.AxisX.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea18.AxisY.Title = "Temperature [K]";
+            chartArea18.Name = "ChartArea1";
+            chartArea18.Position.Auto = false;
+            chartArea18.Position.Height = 100F;
+            chartArea18.Position.Width = 100F;
+            this.chartTemp.ChartAreas.Add(chartArea18);
+            legend18.DockedToChartArea = "ChartArea1";
+            legend18.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            legend18.Name = "Legend1";
+            this.chartTemp.Legends.Add(legend18);
+            this.chartTemp.Location = new System.Drawing.Point(3, 3);
             this.chartTemp.Name = "chartTemp";
             this.chartTemp.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend1";
-            series8.Name = "Series2";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Legend = "Legend1";
-            series9.Name = "Series3";
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series10.Legend = "Legend1";
-            series10.Name = "Series4";
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.Legend = "Legend1";
-            series11.Name = "Series5";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series12.Legend = "Legend1";
-            series12.Name = "Series6";
-            this.chartTemp.Series.Add(series7);
-            this.chartTemp.Series.Add(series8);
-            this.chartTemp.Series.Add(series9);
-            this.chartTemp.Series.Add(series10);
-            this.chartTemp.Series.Add(series11);
-            this.chartTemp.Series.Add(series12);
-            this.chartTemp.Size = new System.Drawing.Size(920, 263);
+            series103.ChartArea = "ChartArea1";
+            series103.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series103.Legend = "Legend1";
+            series103.Name = "Series1";
+            series104.ChartArea = "ChartArea1";
+            series104.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series104.Legend = "Legend1";
+            series104.Name = "Series2";
+            series105.ChartArea = "ChartArea1";
+            series105.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series105.Legend = "Legend1";
+            series105.Name = "Series3";
+            series106.ChartArea = "ChartArea1";
+            series106.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series106.Legend = "Legend1";
+            series106.Name = "Series4";
+            series107.ChartArea = "ChartArea1";
+            series107.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series107.Legend = "Legend1";
+            series107.Name = "Series5";
+            series108.ChartArea = "ChartArea1";
+            series108.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series108.Legend = "Legend1";
+            series108.Name = "Series6";
+            this.chartTemp.Series.Add(series103);
+            this.chartTemp.Series.Add(series104);
+            this.chartTemp.Series.Add(series105);
+            this.chartTemp.Series.Add(series106);
+            this.chartTemp.Series.Add(series107);
+            this.chartTemp.Series.Add(series108);
+            this.chartTemp.Size = new System.Drawing.Size(690, 215);
             this.chartTemp.TabIndex = 0;
             this.chartTemp.Text = "chart1";
             // 
@@ -478,19 +455,17 @@ namespace Interface_V2
             this.panel1.Controls.Add(this.btnLogSave);
             this.panel1.Controls.Add(this.btnLogStop);
             this.panel1.Controls.Add(this.btnLogStart);
-            this.panel1.Location = new System.Drawing.Point(4, 546);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Location = new System.Drawing.Point(3, 445);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(920, 32);
+            this.panel1.Size = new System.Drawing.Size(690, 26);
             this.panel1.TabIndex = 2;
             // 
             // btnLogSave
             // 
             this.btnLogSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogSave.Location = new System.Drawing.Point(817, 2);
-            this.btnLogSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogSave.Location = new System.Drawing.Point(613, 2);
             this.btnLogSave.Name = "btnLogSave";
-            this.btnLogSave.Size = new System.Drawing.Size(100, 28);
+            this.btnLogSave.Size = new System.Drawing.Size(75, 23);
             this.btnLogSave.TabIndex = 2;
             this.btnLogSave.Text = "SAVE";
             this.btnLogSave.UseVisualStyleBackColor = true;
@@ -499,10 +474,9 @@ namespace Interface_V2
             // btnLogStop
             // 
             this.btnLogStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogStop.Location = new System.Drawing.Point(709, 2);
-            this.btnLogStop.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogStop.Location = new System.Drawing.Point(532, 2);
             this.btnLogStop.Name = "btnLogStop";
-            this.btnLogStop.Size = new System.Drawing.Size(100, 28);
+            this.btnLogStop.Size = new System.Drawing.Size(75, 23);
             this.btnLogStop.TabIndex = 1;
             this.btnLogStop.Text = "STOP";
             this.btnLogStop.UseVisualStyleBackColor = true;
@@ -511,10 +485,9 @@ namespace Interface_V2
             // btnLogStart
             // 
             this.btnLogStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogStart.Location = new System.Drawing.Point(601, 2);
-            this.btnLogStart.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogStart.Location = new System.Drawing.Point(451, 2);
             this.btnLogStart.Name = "btnLogStart";
-            this.btnLogStart.Size = new System.Drawing.Size(100, 28);
+            this.btnLogStart.Size = new System.Drawing.Size(75, 23);
             this.btnLogStart.TabIndex = 0;
             this.btnLogStart.Text = "START";
             this.btnLogStart.UseVisualStyleBackColor = true;
@@ -529,11 +502,9 @@ namespace Interface_V2
             this.gbxControls.Controls.Add(this.groupBox2);
             this.gbxControls.Controls.Add(this.label6);
             this.gbxControls.Controls.Add(this.label5);
-            this.gbxControls.Location = new System.Drawing.Point(4, 564);
-            this.gbxControls.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxControls.Location = new System.Drawing.Point(3, 458);
             this.gbxControls.Name = "gbxControls";
-            this.gbxControls.Padding = new System.Windows.Forms.Padding(4);
-            this.gbxControls.Size = new System.Drawing.Size(941, 122);
+            this.gbxControls.Size = new System.Drawing.Size(706, 100);
             this.gbxControls.TabIndex = 21;
             this.gbxControls.TabStop = false;
             this.gbxControls.Text = "System Controls";
@@ -546,11 +517,9 @@ namespace Interface_V2
             this.groupBox3.Controls.Add(this.btnPurgeOx);
             this.groupBox3.Controls.Add(this.btnPurgeFuel);
             this.groupBox3.Controls.Add(this.btnManual);
-            this.groupBox3.Location = new System.Drawing.Point(659, 23);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Location = new System.Drawing.Point(494, 19);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(275, 92);
+            this.groupBox3.Size = new System.Drawing.Size(206, 75);
             this.groupBox3.TabIndex = 16;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Manual Control (DANGER)";
@@ -558,10 +527,9 @@ namespace Interface_V2
             // cbxHeliumFlow
             // 
             this.cbxHeliumFlow.AutoSize = true;
-            this.cbxHeliumFlow.Location = new System.Drawing.Point(116, 25);
-            this.cbxHeliumFlow.Margin = new System.Windows.Forms.Padding(4);
+            this.cbxHeliumFlow.Location = new System.Drawing.Point(87, 20);
             this.cbxHeliumFlow.Name = "cbxHeliumFlow";
-            this.cbxHeliumFlow.Size = new System.Drawing.Size(124, 20);
+            this.cbxHeliumFlow.Size = new System.Drawing.Size(105, 17);
             this.cbxHeliumFlow.TabIndex = 11;
             this.cbxHeliumFlow.Text = "HELIUM BLEED";
             this.cbxHeliumFlow.UseVisualStyleBackColor = true;
@@ -569,10 +537,9 @@ namespace Interface_V2
             // 
             // btnPurgeOx
             // 
-            this.btnPurgeOx.Location = new System.Drawing.Point(8, 20);
-            this.btnPurgeOx.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPurgeOx.Location = new System.Drawing.Point(6, 16);
             this.btnPurgeOx.Name = "btnPurgeOx";
-            this.btnPurgeOx.Size = new System.Drawing.Size(100, 28);
+            this.btnPurgeOx.Size = new System.Drawing.Size(75, 23);
             this.btnPurgeOx.TabIndex = 8;
             this.btnPurgeOx.Text = "PURGE";
             this.btnPurgeOx.UseVisualStyleBackColor = true;
@@ -580,10 +547,9 @@ namespace Interface_V2
             // 
             // btnPurgeFuel
             // 
-            this.btnPurgeFuel.Location = new System.Drawing.Point(8, 55);
-            this.btnPurgeFuel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPurgeFuel.Location = new System.Drawing.Point(6, 45);
             this.btnPurgeFuel.Name = "btnPurgeFuel";
-            this.btnPurgeFuel.Size = new System.Drawing.Size(100, 28);
+            this.btnPurgeFuel.Size = new System.Drawing.Size(75, 23);
             this.btnPurgeFuel.TabIndex = 9;
             this.btnPurgeFuel.Text = "PURGE";
             this.btnPurgeFuel.UseVisualStyleBackColor = true;
@@ -591,10 +557,9 @@ namespace Interface_V2
             // 
             // btnManual
             // 
-            this.btnManual.Location = new System.Drawing.Point(116, 55);
-            this.btnManual.Margin = new System.Windows.Forms.Padding(4);
+            this.btnManual.Location = new System.Drawing.Point(87, 45);
             this.btnManual.Name = "btnManual";
-            this.btnManual.Size = new System.Drawing.Size(151, 28);
+            this.btnManual.Size = new System.Drawing.Size(113, 23);
             this.btnManual.TabIndex = 10;
             this.btnManual.Text = "MANUAL";
             this.btnManual.UseVisualStyleBackColor = true;
@@ -605,118 +570,116 @@ namespace Interface_V2
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.btnState1);
             this.groupBox2.Controls.Add(this.btnState2);
-            this.groupBox2.Controls.Add(this.btnState8);
+            this.groupBox2.Controls.Add(this.btnAbort);
             this.groupBox2.Controls.Add(this.btnState3);
             this.groupBox2.Controls.Add(this.btnState7);
             this.groupBox2.Controls.Add(this.btnState5);
             this.groupBox2.Controls.Add(this.btnState6);
             this.groupBox2.Controls.Add(this.btnState4);
-            this.groupBox2.Location = new System.Drawing.Point(100, 23);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(75, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(551, 92);
+            this.groupBox2.Size = new System.Drawing.Size(413, 75);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "State Machine";
             // 
             // btnState1
             // 
-            this.btnState1.Location = new System.Drawing.Point(8, 20);
-            this.btnState1.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState1.Location = new System.Drawing.Point(6, 16);
             this.btnState1.Name = "btnState1";
-            this.btnState1.Size = new System.Drawing.Size(100, 28);
+            this.btnState1.Size = new System.Drawing.Size(75, 23);
             this.btnState1.TabIndex = 0;
             this.btnState1.Text = "FILL/DRAIN";
             this.btnState1.UseVisualStyleBackColor = true;
+            this.btnState1.Click += new System.EventHandler(this.btnState1_Click);
             // 
             // btnState2
             // 
-            this.btnState2.Location = new System.Drawing.Point(8, 55);
-            this.btnState2.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState2.Location = new System.Drawing.Point(6, 45);
             this.btnState2.Name = "btnState2";
-            this.btnState2.Size = new System.Drawing.Size(100, 28);
+            this.btnState2.Size = new System.Drawing.Size(75, 23);
             this.btnState2.TabIndex = 1;
             this.btnState2.Text = "FILL/DRAIN";
             this.btnState2.UseVisualStyleBackColor = true;
+            this.btnState2.Click += new System.EventHandler(this.btnState2_Click);
             // 
-            // btnState8
+            // btnAbort
             // 
-            this.btnState8.Location = new System.Drawing.Point(440, 20);
-            this.btnState8.Margin = new System.Windows.Forms.Padding(4);
-            this.btnState8.Name = "btnState8";
-            this.btnState8.Size = new System.Drawing.Size(100, 64);
-            this.btnState8.TabIndex = 7;
-            this.btnState8.Text = "ABORT";
-            this.btnState8.UseVisualStyleBackColor = true;
+            this.btnAbort.BackColor = System.Drawing.Color.Red;
+            this.btnAbort.Location = new System.Drawing.Point(330, 16);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(75, 52);
+            this.btnAbort.TabIndex = 7;
+            this.btnAbort.Text = "ABORT";
+            this.btnAbort.UseVisualStyleBackColor = false;
+            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
             // 
             // btnState3
             // 
-            this.btnState3.Location = new System.Drawing.Point(116, 20);
-            this.btnState3.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState3.Location = new System.Drawing.Point(87, 16);
             this.btnState3.Name = "btnState3";
-            this.btnState3.Size = new System.Drawing.Size(100, 28);
+            this.btnState3.Size = new System.Drawing.Size(75, 23);
             this.btnState3.TabIndex = 2;
             this.btnState3.Text = "SAFE";
             this.btnState3.UseVisualStyleBackColor = true;
+            this.btnState3.Click += new System.EventHandler(this.btnState3_Click);
             // 
             // btnState7
             // 
-            this.btnState7.Location = new System.Drawing.Point(332, 20);
-            this.btnState7.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState7.BackColor = System.Drawing.Color.Green;
+            this.btnState7.Location = new System.Drawing.Point(249, 16);
             this.btnState7.Name = "btnState7";
-            this.btnState7.Size = new System.Drawing.Size(100, 64);
+            this.btnState7.Size = new System.Drawing.Size(75, 52);
             this.btnState7.TabIndex = 6;
             this.btnState7.Text = "FIRE";
-            this.btnState7.UseVisualStyleBackColor = true;
+            this.btnState7.UseVisualStyleBackColor = false;
+            this.btnState7.Click += new System.EventHandler(this.btnState7_Click);
             // 
             // btnState5
             // 
-            this.btnState5.Location = new System.Drawing.Point(224, 20);
-            this.btnState5.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState5.Location = new System.Drawing.Point(168, 16);
             this.btnState5.Name = "btnState5";
-            this.btnState5.Size = new System.Drawing.Size(100, 28);
+            this.btnState5.Size = new System.Drawing.Size(75, 23);
             this.btnState5.TabIndex = 3;
             this.btnState5.Text = "PRESSED";
             this.btnState5.UseVisualStyleBackColor = true;
+            this.btnState5.Click += new System.EventHandler(this.btnState5_Click);
             // 
             // btnState6
             // 
-            this.btnState6.Location = new System.Drawing.Point(224, 55);
-            this.btnState6.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState6.Location = new System.Drawing.Point(168, 45);
             this.btnState6.Name = "btnState6";
-            this.btnState6.Size = new System.Drawing.Size(100, 28);
+            this.btnState6.Size = new System.Drawing.Size(75, 23);
             this.btnState6.TabIndex = 5;
             this.btnState6.Text = "PRESSED";
             this.btnState6.UseVisualStyleBackColor = true;
+            this.btnState6.Click += new System.EventHandler(this.btnState6_Click);
             // 
             // btnState4
             // 
-            this.btnState4.Location = new System.Drawing.Point(116, 55);
-            this.btnState4.Margin = new System.Windows.Forms.Padding(4);
+            this.btnState4.Location = new System.Drawing.Point(87, 45);
             this.btnState4.Name = "btnState4";
-            this.btnState4.Size = new System.Drawing.Size(100, 28);
+            this.btnState4.Size = new System.Drawing.Size(75, 23);
             this.btnState4.TabIndex = 4;
             this.btnState4.Text = "SAFE";
             this.btnState4.UseVisualStyleBackColor = true;
+            this.btnState4.Click += new System.EventHandler(this.btnState4_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 86);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(9, 70);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 16);
+            this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "FUEL SIDE";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 50);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(9, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 16);
+            this.label5.Size = new System.Drawing.Size(50, 13);
             this.label5.TabIndex = 12;
             this.label5.Text = "OX SIDE";
             // 
@@ -728,11 +691,9 @@ namespace Interface_V2
             this.tableLayoutPanel1.SetColumnSpan(this.gbxComms, 2);
             this.gbxComms.Controls.Add(this.tbxLogRX);
             this.gbxComms.Controls.Add(this.tbxLogTX);
-            this.gbxComms.Location = new System.Drawing.Point(4, 694);
-            this.gbxComms.Margin = new System.Windows.Forms.Padding(4);
+            this.gbxComms.Location = new System.Drawing.Point(3, 564);
             this.gbxComms.Name = "gbxComms";
-            this.gbxComms.Padding = new System.Windows.Forms.Padding(4);
-            this.gbxComms.Size = new System.Drawing.Size(1893, 81);
+            this.gbxComms.Size = new System.Drawing.Size(1420, 66);
             this.gbxComms.TabIndex = 22;
             this.gbxComms.TabStop = false;
             this.gbxComms.Text = "Raw Data";
@@ -743,7 +704,7 @@ namespace Interface_V2
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 949F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 712F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.gbxComms, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.gbxLogging, 1, 1);
@@ -751,14 +712,13 @@ namespace Interface_V2
             this.tableLayoutPanel1.Controls.Add(this.gbxOverview, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 130F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1901, 779);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1426, 633);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
             // dialogConfig
@@ -777,12 +737,11 @@ namespace Interface_V2
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1901, 782);
+            this.ClientSize = new System.Drawing.Size(1426, 635);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1917, 821);
+            this.MinimumSize = new System.Drawing.Size(1442, 674);
             this.Name = "FormMain";
             this.Text = "CAT GSE Controller";
             this.Load += new System.EventHandler(this.FormMain_Load);
@@ -829,7 +788,7 @@ namespace Interface_V2
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTemp;
-        private System.Windows.Forms.Button btnState8;
+        private System.Windows.Forms.Button btnAbort;
         private System.Windows.Forms.Button btnState7;
         private System.Windows.Forms.Button btnState6;
         private System.Windows.Forms.Button btnState4;

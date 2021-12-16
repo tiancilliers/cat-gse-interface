@@ -66,7 +66,7 @@ namespace Interface_V2
                         pe.Graphics.DrawString(text, font, brush, tx, ty);
                     }*/
 
-                    if (pressureData.sensors != null)
+                    if (pressureData.sensors != null && config.baseSettings.pressure_sensors[i].diagram_align != "")
                     {
                         string text = config.baseSettings.pressure_sensors[i].sensor_name + ": " + (pressureData.sensors[i]/1000).ToString("0.00") + " kPa";
                         int tx = (int)(imageX + (float)imageWidth * config.baseSettings.pressure_sensors[i].diagram_position_x);

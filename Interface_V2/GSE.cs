@@ -26,11 +26,13 @@ namespace Interface_V2
         public const byte CMD_SET_FUEL_STATES = 0x12;
         public const byte CMD_RESET_STATE = 0x13;
         public const byte CMD_BUTTON_PRESSED = 0x14;
+        public const byte CMD_GET_STATES = 0x15;
+        public const byte CMD_ABORT_ABORT = 0xFF;
 
         public const byte ACK = 0xFF;
         public const byte NACK = 0x00;
 
-        [StructLayout(LayoutKind.Sequential, Size = 6*8)]
+        [StructLayout(LayoutKind.Sequential, Size = 6 * 8)]
         public struct SensorData
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 6)]
@@ -49,6 +51,36 @@ namespace Interface_V2
         {
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16)]
             public ushort[] servos;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Size = 9)]
+        public struct ServoKeyframe
+        {
+            uint delay_ms_before;
+            byte servo_idx;
+            uint servo_state;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Size = 47)]
+        public struct StateTransition
+        {
+            byte transition_flags; // bit0: abort transition
+            byte trigger_type;
+            uint trigger_param1;
+            uint trigger_param2;
+            byte target_state;
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4)]
+            ServoKeyframe[] transition;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Size = 409)]
+        public struct StateNode
+        {
+            byte state_flags; // bit0: state active
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16)]
+            ushort[] state_servos;
+            [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8)]
+            StateTransition[] transitions;
         }
 
         SLIP slip;
@@ -89,6 +121,37 @@ namespace Interface_V2
             command[0] = type;
             StructureToByteArray<SensorTypeData>(data).CopyTo(command, 1);
             slip.DoTransaction(command);
+        }
+
+        public void SetMachineStates(byte type, StateNode[] nodes)
+        {
+            byte[] command = new byte[97];
+            command[0] = type;
+            for (int i = 0; i < 8; i++)
+            {
+                StructureToByteArray<StateNode>(nodes[i]).CopyTo(command, 1+409*i);
+            }
+            slip.DoTransaction(command);
+        }
+
+        public void ResetState()
+        {
+            ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_RESET_STATE }));
+        }
+
+        public void SendButtonPressed(byte buttonIdx)
+        {
+            ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_BUTTON_PRESSED, buttonIdx }));
+        }
+
+        public void Abort()
+        {
+            ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_ABORT_ABORT }));
+        }
+
+        public byte[] GetStates()
+        {
+            return slip.DoTransaction(new byte[] { CMD_GET_STATES });
         }
 
         public void SetValveStates(ServoData data)

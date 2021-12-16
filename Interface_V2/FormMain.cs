@@ -126,12 +126,9 @@ namespace Interface_V2
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            if (dialogConfig.ShowDialog() == DialogResult.OK)
-            {
-                config = new Config(configPath);
-                applyVisualConfig();
-                applyGSEConfig();
-            }
+            config = new Config(configPath);
+            applyVisualConfig();
+            applyGSEConfig();
         }
 
         private void applyGSEConfig()
@@ -155,6 +152,17 @@ namespace Interface_V2
                 state0.servos[i] = (ushort)config.baseSettings.valves[i].valve_state0_us;
             }
             gse.SetValveStates(state0);
+
+            GSE.StateNode[] oxidizerNodes = new GSE.StateNode[8];
+            for (int i = 0; i < 8; i++)
+            {
+                oxidizerNodes[i] = new GSE.StateNode();
+                StateMachineSettings ox = config.baseSettings.oxidizer_state_machine;
+                for (int j = 0; j < ox.states.Count; j++)
+                {
+                    //stuff 
+                }
+            }
         }
 
         private void applyVisualConfig()
@@ -188,6 +196,14 @@ namespace Interface_V2
             chartTemp.ChartAreas[0].AxisY.Minimum = config.baseSettings.temperature_min;
             chartTemp.ChartAreas[0].AxisY.Maximum = config.baseSettings.temperature_max;
             systemDiagram1.SetConfig(config);
+
+            btnState1.Text = config.baseSettings.buttons[1].button_label;
+            btnState2.Text = config.baseSettings.buttons[2].button_label;
+            btnState3.Text = config.baseSettings.buttons[3].button_label;
+            btnState4.Text = config.baseSettings.buttons[4].button_label;
+            btnState5.Text = config.baseSettings.buttons[5].button_label;
+            btnState6.Text = config.baseSettings.buttons[6].button_label;
+            btnState7.Text = config.baseSettings.buttons[7].button_label;
         }
 
         private void FormMain_Resize(object sender, EventArgs e)
@@ -248,8 +264,8 @@ namespace Interface_V2
         private void cbxHeliumFlow_CheckedChanged(object sender, EventArgs e)
         {
             SetValveState("VALVE_HE_BLEED", cbxHeliumFlow.Checked ? 1.0 : 0.0);
-            SetValveState("VALVE_OX_VENT", cbxHeliumFlow.Checked ? 1.0 : 0.0);
-            SetValveState("VALVE_FUEL_VENT", cbxHeliumFlow.Checked ? 1.0 : 0.0);
+            //SetValveState("VALVE_OX_VENT", cbxHeliumFlow.Checked ? 1.0 : 0.0);
+            //SetValveState("VALVE_FUEL_VENT", cbxHeliumFlow.Checked ? 1.0 : 0.0);
         }
 
         private void btnPurgeOx_Click(object sender, EventArgs e)
@@ -273,6 +289,60 @@ namespace Interface_V2
             tmrPurge.Enabled = true;
             btnPurgeFuel.Enabled = false;
             btnPurgeOx.Enabled = false;
+        }
+
+        private void btnAbort_Click(object sender, EventArgs e)
+        {
+            gse.Abort();
+            RefreshButtons();
+        }
+
+        private void btnState1_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(1);
+            RefreshButtons();
+        }
+        
+        private void RefreshButtons()
+        {
+            byte[] states = gse.GetStates();
+            // set only buttons that can be pressed now
+        }
+
+        private void btnState2_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(2);
+            RefreshButtons();
+        }
+
+        private void btnState3_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(3);
+            RefreshButtons();
+        }
+
+        private void btnState4_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(4);
+            RefreshButtons();
+        }
+
+        private void btnState5_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(5);
+            RefreshButtons();
+        }
+
+        private void btnState6_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(6);
+            RefreshButtons();
+        }
+
+        private void btnState7_Click(object sender, EventArgs e)
+        {
+            gse.SendButtonPressed(7);
+            RefreshButtons();
         }
     }
 }
