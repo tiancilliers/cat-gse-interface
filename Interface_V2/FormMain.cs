@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
+using System.Threading;
 
 namespace Interface_V2
 {
@@ -20,6 +21,7 @@ namespace Interface_V2
         FormManual manualEntry;
         private bool loggingEnabled = false;
         string configPath = "GSE_Config.json";
+        Button[] stateButtons = new Button[8];
 
         public FormMain()
         {
@@ -28,6 +30,13 @@ namespace Interface_V2
             manualEntry = new FormManual(gse);
             config = new Config(configPath);
             applyVisualConfig();
+            stateButtons[1] = btnState1;
+            stateButtons[2] = btnState2;
+            stateButtons[3] = btnState3;
+            stateButtons[4] = btnState4;
+            stateButtons[5] = btnState5;
+            stateButtons[6] = btnState6;
+            stateButtons[7] = btnState7;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -39,8 +48,8 @@ namespace Interface_V2
         private void btnPortOpen_Click(object sender, EventArgs e)
         {
             port1.PortName = (string)cbxPort.Items[cbxPort.SelectedIndex];
-            try 
-            { 
+            //try 
+            //{ 
                 port1.Open();
                 tbxIdent.Text = gse.GetIdent();
                 tbxVersion.Text = gse.GetVersion();
@@ -49,12 +58,12 @@ namespace Interface_V2
                 btnPortOpen.Enabled = false;
                 btnPortClose.Enabled = true;
                 enableInterface(true);
-            }
-            catch 
-            {
-                port1.Close();
-                MessageBox.Show("Unable to open port", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch 
+           // {
+            //    port1.Close();
+            //    MessageBox.Show("Unable to open port", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void btnPortClose_Click(object sender, EventArgs e)
@@ -153,16 +162,63 @@ namespace Interface_V2
             }
             gse.SetValveStates(state0);
 
-            GSE.StateNode[] oxidizerNodes = new GSE.StateNode[8];
+            gse.SetMachineStates(GSE.CMD_SET_FUEL_STATES, loadStates(config.baseSettings.fuel_state_machine));
+            gse.SetMachineStates(GSE.CMD_SET_OX_STATES, loadStates(config.baseSettings.oxidizer_state_machine));
+            gse.ResetState();
+
+            RefreshButtons();
+        }
+
+        private GSE.StateNode[] loadStates(StateMachineSettings cfgMachine)
+        {
+            GSE.StateNode[] nodes = new GSE.StateNode[8];
             for (int i = 0; i < 8; i++)
             {
-                oxidizerNodes[i] = new GSE.StateNode();
-                StateMachineSettings ox = config.baseSettings.oxidizer_state_machine;
-                for (int j = 0; j < ox.states.Count; j++)
+                nodes[i] = new GSE.StateNode();
+                if (i >= cfgMachine.states.Count) continue;
+                nodes[i].state_servos = new ushort[16];
+                for (int j = 0; j < cfgMachine.states[i].valve_names.Count; j++)
                 {
-                    //stuff 
+                    int valve = config.FindServo(cfgMachine.states[i].valve_names[j]);
+                    if (valve != -1) nodes[i].state_servos[valve] = config.MapServo((byte)valve, cfgMachine.states[i].valve_states[j]);
+                }
+                nodes[i].transitions = new GSE.StateTransition[8];
+                for (int j = 0; j < cfgMachine.states[i].targets.Count; j++)
+                {
+                    StateTransition transition = cfgMachine.states[i].targets[j];
+                    GSE.StateTransition to = new GSE.StateTransition();
+                    int state = cfgMachine.FindState(transition.target_state);
+                    if (state == -1) continue;
+                    to.target_state = (byte)state;
+                    switch (transition.trigger_type)
+                    {
+                        case "TRIGGER_BUTTON":
+                            to.trigger_type = 1;
+                            int button = config.FindButton(transition.button_name);
+                            to.trigger_param1 = (uint)(button == -1 ? 0 : button);
+                            break;
+                        case "TRIGGER_TIMER":
+                            to.trigger_type = 2;
+                            to.trigger_param1 = (uint)transition.timer_delay;
+                            break;
+                        default:
+                            to.trigger_type = 0;
+                            break;
+                    }
+                    to.transition = new GSE.ServoKeyframe[4];
+                    for (int k = 0; k < transition.transition.Count; k++)
+                    {
+                        to.transition[k] = new GSE.ServoKeyframe();
+                        to.transition[k].delay_ms_before = (uint)transition.transition[k].delay_before;
+                        int valve = config.FindServo(transition.transition[k].valve_name);
+                        if (valve == -1) continue;
+                        to.transition[k].servo_idx = (byte)valve;
+                        to.transition[k].servo_state = config.MapServo((byte)valve, transition.transition[k].valve_state);
+                    }
+                    nodes[i].transitions[j] = to;
                 }
             }
+            return nodes;
         }
 
         private void applyVisualConfig()
@@ -295,54 +351,83 @@ namespace Interface_V2
         {
             gse.Abort();
             RefreshButtons();
+            btnState3.BackColor = Color.LightGreen;
+            btnState4.BackColor = Color.LightGreen;
         }
 
         private void btnState1_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(1);
             RefreshButtons();
+            btnState1.BackColor = Color.LightGreen;
         }
         
-        private void RefreshButtons()
-        {
+        private void RefreshButtons() { 
+        
+            Thread.Sleep(50);
             byte[] states = gse.GetStates();
+            //MessageBox.Show("State0: " + states[0] + ", State1: " + states[1]);
             // set only buttons that can be pressed now
+            for (int i = 1; i < 8; i++)
+            {
+                stateButtons[i].Enabled = false;
+                stateButtons[i].BackColor = Color.LightGray;
+            }
+            foreach (StateTransition t in config.baseSettings.fuel_state_machine.states[states[0]].targets) {
+                if (t.trigger_type == "TRIGGER_BUTTON" && config.FindButton(t.button_name) != -1)
+                {
+                    stateButtons[config.FindButton(t.button_name)].Enabled = true;
+                }
+            }
+            foreach (StateTransition t in config.baseSettings.oxidizer_state_machine.states[states[1]].targets)
+            {
+                if (t.trigger_type == "TRIGGER_BUTTON" && config.FindButton(t.button_name) != -1)
+                {
+                    stateButtons[config.FindButton(t.button_name)].Enabled = true;
+                }
+            }
         }
 
         private void btnState2_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(2);
             RefreshButtons();
+            btnState2.BackColor = Color.LightGreen;
         }
 
         private void btnState3_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(3);
             RefreshButtons();
+            btnState3.BackColor = Color.LightGreen;
         }
 
         private void btnState4_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(4);
             RefreshButtons();
+            btnState4.BackColor = Color.LightGreen;
         }
 
         private void btnState5_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(5);
             RefreshButtons();
+            btnState5.BackColor = Color.LightGreen;
         }
 
         private void btnState6_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(6);
             RefreshButtons();
+            btnState6.BackColor = Color.LightGreen;
         }
 
         private void btnState7_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(7);
             RefreshButtons();
+            btnState7.BackColor = Color.LightGreen;
         }
     }
 }

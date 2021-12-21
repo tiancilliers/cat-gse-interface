@@ -36,6 +36,11 @@ namespace Interface_V2
             for (int i = 0; i < baseSettings.valves.Count; i++) if (buttonName.Equals(baseSettings.buttons[i].button_name)) return i;
             return -1;
         }
+
+        public ushort MapServo(byte servo, double value)
+        {
+            return (ushort)Utilities.Map(value, 0, 1, baseSettings.valves[servo].valve_state0_us, baseSettings.valves[servo].valve_state1_us);
+        }
     }
 
     public class StateKeyframe
@@ -65,6 +70,12 @@ namespace Interface_V2
     public class StateMachineSettings
     {
         public List<StateNode> states { get; set; }
+
+        public int FindState(string stateName)
+        {
+            for (int i = 0; i < states.Count; i++) if (stateName.Equals(states[i].state_name)) return i;
+            return -1;
+        }
     }
 
     public class BaseSettings

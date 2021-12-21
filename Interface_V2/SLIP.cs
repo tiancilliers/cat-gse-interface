@@ -19,7 +19,6 @@ namespace Interface_V2
         TextBox txLog;
         TextBox rxLog;
         List<byte> buffer = new List<byte>();
-        bool available = true;
 
         public SLIP(SerialPort port, TextBox txLog, TextBox rxLog)
         {

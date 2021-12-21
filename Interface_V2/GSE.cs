@@ -32,6 +32,8 @@ namespace Interface_V2
         public const byte ACK = 0xFF;
         public const byte NACK = 0x00;
 
+
+
         [StructLayout(LayoutKind.Sequential, Size = 6 * 8)]
         public struct SensorData
         {
@@ -53,34 +55,36 @@ namespace Interface_V2
             public ushort[] servos;
         }
 
-        [StructLayout(LayoutKind.Sequential, Size = 9)]
+        [StructLayout(LayoutKind.Sequential, Size = 12)]
         public struct ServoKeyframe
         {
-            uint delay_ms_before;
-            byte servo_idx;
-            uint servo_state;
+            public uint delay_ms_before;
+            public uint servo_state;
+            public byte servo_idx;
+            public byte temp1, temp2, temp3;
         }
 
-        [StructLayout(LayoutKind.Sequential, Size = 47)]
+        [StructLayout(LayoutKind.Sequential, Size = 60)]
         public struct StateTransition
         {
-            byte transition_flags; // bit0: abort transition
-            byte trigger_type;
-            uint trigger_param1;
-            uint trigger_param2;
-            byte target_state;
+            public byte transition_flags; // bit0: abort transition
+            public byte trigger_type;
+            public byte target_state;
+            public byte temp1;
+            public uint trigger_param1;
+            public uint trigger_param2;//12
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4)]
-            ServoKeyframe[] transition;
+            public ServoKeyframe[] transition;//48
         }
 
-        [StructLayout(LayoutKind.Sequential, Size = 409)]
+        [StructLayout(LayoutKind.Sequential, Size = 516)]
         public struct StateNode
         {
-            byte state_flags; // bit0: state active
+            public uint state_flags; // bit0: state active
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 16)]
-            ushort[] state_servos;
+            public ushort[] state_servos;
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 8)]
-            StateTransition[] transitions;
+            public StateTransition[] transitions;
         }
 
         SLIP slip;
@@ -125,28 +129,30 @@ namespace Interface_V2
 
         public void SetMachineStates(byte type, StateNode[] nodes)
         {
-            byte[] command = new byte[97];
+            byte[] command = new byte[1+ 516 * 8];
             command[0] = type;
             for (int i = 0; i < 8; i++)
             {
-                StructureToByteArray<StateNode>(nodes[i]).CopyTo(command, 1+409*i);
+                byte[] tesrt = StructureToByteArray<StateNode>(nodes[i]);
+                StructureToByteArray<StateNode>(nodes[i]).CopyTo(command, 1+ 516 * i);
             }
+            //MessageBox.Show(BitConverter.ToString(command));
             slip.DoTransaction(command);
         }
 
         public void ResetState()
         {
-            ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_RESET_STATE }));
+            slip.DoTransaction(new byte[] { CMD_RESET_STATE });
         }
 
         public void SendButtonPressed(byte buttonIdx)
         {
-            ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_BUTTON_PRESSED, buttonIdx }));
+            slip.DoTransaction(new byte[] { CMD_BUTTON_PRESSED, buttonIdx });
         }
 
         public void Abort()
         {
-            ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_ABORT_ABORT }));
+            slip.DoTransaction(new byte[] { CMD_ABORT_ABORT });
         }
 
         public byte[] GetStates()
