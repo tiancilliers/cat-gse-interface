@@ -62,6 +62,7 @@ namespace Interface_V2
     public class StateNode
     {
         public string state_name { get; set; }
+        public int spark_enabled { get; set; } = 0;
         public List<string> valve_names { get; set; } = new List<string>();
         public List<int> valve_states { get; set; } = new List<int>();
         public List<StateTransition> targets { get; set; } = new List<StateTransition>();

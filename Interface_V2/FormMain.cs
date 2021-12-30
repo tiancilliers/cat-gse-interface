@@ -88,6 +88,7 @@ namespace Interface_V2
                 systemDiagram1.pressureData = rawPress;
                 systemDiagram1.valveData = rawValves;
                 systemDiagram1.Refresh();
+                RefreshButtons();
 
                 if (config != null && loggingEnabled)
                 {
@@ -177,6 +178,7 @@ namespace Interface_V2
                 nodes[i] = new GSE.StateNode();
                 if (i >= cfgMachine.states.Count) continue;
                 nodes[i].state_servos = new ushort[16];
+                nodes[i].state_flags = (uint)(cfgMachine.states[i].spark_enabled == 1 ? 0b10 : 0b00);
                 for (int j = 0; j < cfgMachine.states[i].valve_names.Count; j++)
                 {
                     int valve = config.FindServo(cfgMachine.states[i].valve_names[j]);
@@ -350,7 +352,6 @@ namespace Interface_V2
         private void btnAbort_Click(object sender, EventArgs e)
         {
             gse.Abort();
-            RefreshButtons();
             btnState3.BackColor = Color.LightGreen;
             btnState4.BackColor = Color.LightGreen;
         }
@@ -358,25 +359,23 @@ namespace Interface_V2
         private void btnState1_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(1);
-            RefreshButtons();
             btnState1.BackColor = Color.LightGreen;
         }
         
         private void RefreshButtons() { 
         
-            Thread.Sleep(50);
             byte[] states = gse.GetStates();
             //MessageBox.Show("State0: " + states[0] + ", State1: " + states[1]);
             // set only buttons that can be pressed now
             for (int i = 1; i < 8; i++)
             {
                 stateButtons[i].Enabled = false;
-                stateButtons[i].BackColor = Color.LightGray;
             }
             foreach (StateTransition t in config.baseSettings.fuel_state_machine.states[states[0]].targets) {
                 if (t.trigger_type == "TRIGGER_BUTTON" && config.FindButton(t.button_name) != -1)
                 {
                     stateButtons[config.FindButton(t.button_name)].Enabled = true;
+                    stateButtons[config.FindButton(t.button_name)].BackColor = Color.LightGray;
                 }
             }
             foreach (StateTransition t in config.baseSettings.oxidizer_state_machine.states[states[1]].targets)
@@ -384,6 +383,7 @@ namespace Interface_V2
                 if (t.trigger_type == "TRIGGER_BUTTON" && config.FindButton(t.button_name) != -1)
                 {
                     stateButtons[config.FindButton(t.button_name)].Enabled = true;
+                    stateButtons[config.FindButton(t.button_name)].BackColor = Color.LightGray;
                 }
             }
         }
@@ -391,42 +391,36 @@ namespace Interface_V2
         private void btnState2_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(2);
-            RefreshButtons();
             btnState2.BackColor = Color.LightGreen;
         }
 
         private void btnState3_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(3);
-            RefreshButtons();
             btnState3.BackColor = Color.LightGreen;
         }
 
         private void btnState4_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(4);
-            RefreshButtons();
             btnState4.BackColor = Color.LightGreen;
         }
 
         private void btnState5_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(5);
-            RefreshButtons();
             btnState5.BackColor = Color.LightGreen;
         }
 
         private void btnState6_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(6);
-            RefreshButtons();
             btnState6.BackColor = Color.LightGreen;
         }
 
         private void btnState7_Click(object sender, EventArgs e)
         {
             gse.SendButtonPressed(7);
-            RefreshButtons();
             btnState7.BackColor = Color.LightGreen;
         }
     }

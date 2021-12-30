@@ -14,12 +14,14 @@
         "valve_names": [
           "VALVE_OX_MAIN",
           "VALVE_OX_VENT",
-          "VALVE_OX_FILL"
+          "VALVE_OX_FILL",
+		  "VALVE_IGN_OX"
         ],
         "valve_states": [
           0,
           0,
-          0
+          0,
+		  0
         ],
         "targets": [
           {
@@ -49,12 +51,14 @@
         "valve_names": [
           "VALVE_OX_MAIN",
           "VALVE_OX_VENT",
-          "VALVE_OX_FILL"
+          "VALVE_OX_FILL",
+		  "VALVE_IGN_OX"
         ],
         "valve_states": [
           0,
           0,
-          1
+          1,
+		  0
         ],
         "targets": [
           {
@@ -69,12 +73,14 @@
         "valve_names": [
           "VALVE_OX_MAIN",
           "VALVE_OX_VENT",
-          "VALVE_OX_FILL"
+          "VALVE_OX_FILL",
+		  "VALVE_IGN_OX"
         ],
         "valve_states": [
           0,
           1,
-          0
+          0,
+		  0
         ],
         "targets": [
           {
@@ -85,8 +91,25 @@
           {
             "trigger_type": "TRIGGER_BUTTON",
             "button_name": "FIRE",
+            "target_state": "OX_IGN"
+          }
+        ]
+      },
+	  {
+		"state_name": "OX_IGN",
+		"spark_enabled": 1,
+		"valve_names": [
+		  "VALVE_IGN_OX"
+		],
+		"valve_states": [
+		  1
+		],
+		"targets": [
+		  {
+			"trigger_type": "TRIGGER_TIMER",
+            "timer_delay": 1000,
             "target_state": "OX_FIRE",
-            "transition": [
+			"transition": [
               {
                 "delay_before": 0,
                 "valve_name": "VALVE_OX_MAIN",
@@ -98,30 +121,37 @@
                 "valve_state": 1
               }
             ]
-          }
-        ]
-      },
+		  }
+		]
+	  },
       {
         "state_name": "OX_FIRE",
         "valve_names": [
           "VALVE_OX_MAIN",
           "VALVE_OX_VENT",
-          "VALVE_OX_FILL"
+          "VALVE_OX_FILL",
+		  "VALVE_IGN_OX"
         ],
         "valve_states": [
           1,
           1,
-          0
+          0,
+		  1
         ],
         "targets": [
           {
             "trigger_type": "TRIGGER_TIMER",
-            "timer_delay": 0,
+            "timer_delay": 5000,
             "target_state": "OX_PRESS",
             "transition": [
               {
                 "delay_before": 0,
                 "valve_name": "VALVE_OX_MAIN",
+                "valve_state": 0
+              },
+			  {
+                "delay_before": 0,
+                "valve_name": "VALVE_IGN_OX",
                 "valve_state": 0
               },
               {
@@ -147,12 +177,14 @@
         "valve_names": [
           "VALVE_FUEL_MAIN",
           "VALVE_FUEL_VENT",
-          "VALVE_FUEL_FILL"
+          "VALVE_FUEL_FILL",
+		  "VALVE_IGN_FUEL"
         ],
         "valve_states": [
           0,
           0,
-          0
+          0,
+		  0
         ],
         "targets": [
           {
@@ -182,12 +214,14 @@
         "valve_names": [
           "VALVE_FUEL_MAIN",
           "VALVE_FUEL_VENT",
-          "VALVE_FUEL_FILL"
+          "VALVE_FUEL_FILL",
+		  "VALVE_IGN_FUEL"
         ],
         "valve_states": [
           0,
           0,
-          1
+          1,
+		  0
         ],
         "targets": [
           {
@@ -202,12 +236,14 @@
         "valve_names": [
           "VALVE_FUEL_MAIN",
           "VALVE_FUEL_VENT",
-          "VALVE_FUEL_FILL"
+          "VALVE_FUEL_FILL",
+		  "VALVE_IGN_FUEL"
         ],
         "valve_states": [
           0,
           1,
-          0
+          0,
+		  0
         ],
         "targets": [
           {
@@ -218,8 +254,25 @@
           {
             "trigger_type": "TRIGGER_BUTTON",
             "button_name": "FIRE",
+            "target_state": "FUEL_IGN"
+          }
+        ]
+      },
+	  {
+		"state_name": "FUEL_IGN",
+		"spark_enabled": 1,
+		"valve_names": [
+		  "VALVE_IGN_FUEL"
+		],
+		"valve_states": [
+		  1
+		],
+		"targets": [
+		  {
+			"trigger_type": "TRIGGER_TIMER",
+            "timer_delay": 1000,
             "target_state": "FUEL_FIRE",
-            "transition": [
+			"transition": [
               {
                 "delay_before": 0,
                 "valve_name": "VALVE_FUEL_MAIN",
@@ -231,30 +284,37 @@
                 "valve_state": 1
               }
             ]
-          }
-        ]
-      },
+		  }
+		]
+	  },
       {
         "state_name": "FUEL_FIRE",
         "valve_names": [
           "VALVE_FUEL_MAIN",
           "VALVE_FUEL_VENT",
-          "VALVE_FUEL_FILL"
+          "VALVE_FUEL_FILL",
+		  "VALVE_IGN_FUEL"
         ],
         "valve_states": [
           1,
           1,
-          0
+          0,
+		  1
         ],
         "targets": [
           {
             "trigger_type": "TRIGGER_TIMER",
-            "timer_delay": 0,
+            "timer_delay": 5000,
             "target_state": "FUEL_PRESS",
             "transition": [
               {
                 "delay_before": 0,
                 "valve_name": "VALVE_FUEL_MAIN",
+                "valve_state": 0
+              },
+			  {
+                "delay_before": 0,
+                "valve_name": "VALVE_IGN_FUEL",
                 "valve_state": 0
               },
               {
@@ -397,13 +457,13 @@
     },
     {
       "valve_name": "VALVE_IGN_OX",
-      "valve_state0_us": 650,
-      "valve_state1_us": 1500
+      "valve_state0_us": 450,
+      "valve_state1_us": 1350
     },
     {
       "valve_name": "VALVE_IGN_FUEL",
-      "valve_state0_us": 450,
-      "valve_state1_us": 1300
+      "valve_state0_us": 650,
+      "valve_state1_us": 1500
     }
   ],
   "pressure_sensors": [
