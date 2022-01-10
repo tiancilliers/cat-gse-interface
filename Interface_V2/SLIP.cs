@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
 using System.Windows.Forms;
+using System.Net.Sockets;
 
 namespace Interface_V2
 {
@@ -15,13 +16,22 @@ namespace Interface_V2
         const byte ESC_END = 0xDC;
         const byte ESC_ESC = 0xDD;
 
-        SerialPort port;
+        //WifiMigrate
+        TcpClient port;
+        NetworkStream serverStream;
+        //**
+
         TextBox txLog;
         TextBox rxLog;
         List<byte> buffer = new List<byte>();
 
-        public SLIP(SerialPort port, TextBox txLog, TextBox rxLog)
+        public SLIP(TcpClient port, TextBox txLog, TextBox rxLog)
         {
+            //byte[] outStream = System.Text.Encoding.ASCII.GetBytes("Helloo");
+            //outStream[outStream.Length - 1] = END;
+            //serverStream.Write(outStream, 0, outStream.Length);
+            //serverStream.Flush();
+
             this.port = port;
             this.txLog = txLog;
             this.rxLog = rxLog;
@@ -29,7 +39,8 @@ namespace Interface_V2
 
         public byte[] DoTransaction(byte[] message)
         {
-            port.ReadExisting();
+            serverStream = port.GetStream();
+            serverStream.Flush();
             txLog.Text = "TX >> " + BitConverter.ToString(message).Replace('-', ' ');
             List<byte> encoded = new List<byte>();
             foreach (byte b in message)
@@ -50,10 +61,10 @@ namespace Interface_V2
                 }
             }
             encoded.Add(END);
-            port.Write(encoded.ToArray(), 0, encoded.Count);
+            serverStream.Write(encoded.ToArray(), 0, encoded.Count);
 
             int c = 0;
-            while ((c = port.ReadByte()) != -1 && (c != END)) buffer.Add((byte)c);
+            while ((c = serverStream.ReadByte()) != -1 && (c != END)) buffer.Add((byte)c);
             if (c != END) return new byte[] { };
 
             List<byte> translated = new List<byte>();
