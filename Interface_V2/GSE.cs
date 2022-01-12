@@ -7,7 +7,6 @@ using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Threading;
-using System.Net.Sockets;
 
 
 namespace Interface_V2
@@ -90,7 +89,7 @@ namespace Interface_V2
 
         SLIP slip;
 
-        public GSE(TcpClient port, TextBox txLog, TextBox rxLog)
+        public GSE(SerialPort port, TextBox txLog, TextBox rxLog)
         {
             slip = new SLIP(port, txLog, rxLog);
         }

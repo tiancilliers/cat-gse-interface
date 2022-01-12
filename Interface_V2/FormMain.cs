@@ -11,7 +11,6 @@ using System.IO.Ports;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.IO;
 using System.Threading;
-using System.Net.Sockets;
 
 namespace Interface_V2
 {
@@ -23,12 +22,11 @@ namespace Interface_V2
         private bool loggingEnabled = false;
         string configPath = "GSE_Config.json";
         Button[] stateButtons = new Button[8];
-        TcpClient port = new TcpClient();    
 
         public FormMain()
         {
             InitializeComponent();
-            gse = new GSE(port, tbxLogTX, tbxLogRX);
+            gse = new GSE(port1, tbxLogTX, tbxLogRX);
             manualEntry = new FormManual(gse);
             config = new Config(configPath);
             applyVisualConfig();
@@ -43,15 +41,16 @@ namespace Interface_V2
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            updateSerialPorts();
             enableInterface(false);
         }
 
         private void btnPortOpen_Click(object sender, EventArgs e)
         {
-            //port1.PortName = (string)cbxPort.Items[cbxPort.SelectedIndex];
+            port1.PortName = (string)cbxPort.Items[cbxPort.SelectedIndex];
             //try 
             //{ 
-                port.Connect(textIP.Text, 23);
+                port1.Open();
                 tbxIdent.Text = gse.GetIdent();
                 tbxVersion.Text = gse.GetVersion();
                 timer1.Start();
@@ -69,7 +68,7 @@ namespace Interface_V2
 
         private void btnPortClose_Click(object sender, EventArgs e)
         {
-            port.Close();
+            port1.Close();
             timer1.Stop();
             btnPortOpen.Enabled = true;
             enableInterface(false);
@@ -80,7 +79,7 @@ namespace Interface_V2
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (port.Connected)
+            if (port1.IsOpen)
             {
                 GSE.SensorData rawTemps = gse.GetTemperatureData();
                 GSE.SensorData rawPress = gse.GetPressureData();
@@ -109,6 +108,21 @@ namespace Interface_V2
                 }
 
             }
+        }
+
+        private void cbxPort_DropDown(object sender, EventArgs e)
+        {
+            updateSerialPorts();
+        }
+
+        private void updateSerialPorts()
+        {
+            cbxPort.Items.Clear();
+            foreach (string port in SerialPort.GetPortNames())
+            {
+                cbxPort.Items.Add(port);
+            }
+            cbxPort.SelectedIndex = 0;
         }
 
         private void enableInterface(bool state)
