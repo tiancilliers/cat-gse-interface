@@ -87,6 +87,7 @@ namespace Interface_V2
                 systemDiagram1.temperatureData = rawTemps;
                 systemDiagram1.pressureData = rawPress;
                 systemDiagram1.valveData = rawValves;
+                systemDiagram1.loadCellData = gse.GetLoadCellData();
                 systemDiagram1.Refresh();
                 RefreshButtons();
 

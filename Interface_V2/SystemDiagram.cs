@@ -16,6 +16,7 @@ namespace Interface_V2
         public GSE.SensorData temperatureData;
         public GSE.SensorData pressureData;
         public GSE.ServoData valveData;
+        public double loadCellData;
         private Config config;
 
         public SystemDiagram()
@@ -76,6 +77,8 @@ namespace Interface_V2
                         pe.Graphics.DrawString(text, font, brush, tx, ty-5, format);
                     }
                 }
+
+                pe.Graphics.DrawString("LOAD_CELL: " + (loadCellData / 1000).ToString("0.00") + " N", font, brush, 10, 10);
 
                 Pen pen = new Pen(Color.Black, 3);
 

@@ -22,6 +22,7 @@ namespace Interface_V2
         public const byte CMD_TEMP_TYPES = 0x06;
         public const byte CMD_PRESS_TYPES = 0x07;
         public const byte CMD_SINGLE_VALVE = 0x08;
+        public const byte CMD_GET_LOAD_CELL = 0x09;
         public const byte CMD_SET_OX_STATES = 0x11;
         public const byte CMD_SET_FUEL_STATES = 0x12;
         public const byte CMD_RESET_STATE = 0x13;
@@ -117,6 +118,11 @@ namespace Interface_V2
         public ServoData GetValveStates()
         {
             return ByteArrayToStructure<ServoData>(slip.DoTransaction(new byte[] { CMD_GET_VALVES }));
+        }
+
+        public double GetLoadCellData()
+        {
+            return BitConverter.ToDouble(slip.DoTransaction(new byte[] { CMD_GET_LOAD_CELL }), 0);
         }
 
         public void SetSensorType(byte type, SensorTypeData data)
