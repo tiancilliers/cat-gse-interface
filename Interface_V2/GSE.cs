@@ -72,9 +72,9 @@ namespace Interface_V2
             public byte target_state;
             public byte temp1;
             public uint trigger_param1;
-            public uint trigger_param2;//12
+            public uint trigger_param2; //12
             [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 4)]
-            public ServoKeyframe[] transition;//48
+            public ServoKeyframe[] transition; //48
         }
 
         [StructLayout(LayoutKind.Sequential, Size = 516)]
